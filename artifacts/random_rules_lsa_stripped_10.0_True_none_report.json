@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.5066921606118547,
+  "macro_f1": 0.5346815782729931,
+  "minimum_f1": 0.3,
+  "per_class": {
+    "Cardiovascular-Pulmonary": {
+      "precision": 0.5487804878048781,
+      "recall": 0.75,
+      "f1-score": 0.6338028169014085,
+      "support": 60.0
+    },
+    "Dermatology": {
+      "precision": 0.2,
+      "recall": 0.6,
+      "f1-score": 0.3,
+      "support": 5.0
+    },
+    "Gastroenterology": {
+      "precision": 0.423728813559322,
+      "recall": 0.6410256410256411,
+      "f1-score": 0.5102040816326531,
+      "support": 39.0
+    },
+    "General Medicine": {
+      "precision": 0.5925925925925926,
+      "recall": 0.7804878048780488,
+      "f1-score": 0.6736842105263158,
+      "support": 41.0
+    },
+    "Neurology": {
+      "precision": 0.5384615384615384,
+      "recall": 0.3888888888888889,
+      "f1-score": 0.45161290322580644,
+      "support": 36.0
+    },
+    "Neurosurgery": {
+      "precision": 0.3448275862068966,
+      "recall": 0.625,
+      "f1-score": 0.4444444444444444,
+      "support": 16.0
+    },
+    "Obstetrics-Gynecology": {
+      "precision": 0.48,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.6233766233766234,
+      "support": 27.0
+    },
+    "Ophthalmology": {
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1-score": 0.8,
+      "support": 14.0
+    },
+    "Orthopedic": {
+      "precision": 0.43661971830985913,
+      "recall": 0.5344827586206896,
+      "f1-score": 0.4806201550387597,
+      "support": 58.0
+    },
+    "Psychiatry-Psychology": {
+      "precision": 0.7,
+      "recall": 0.875,
+      "f1-score": 0.7777777777777778,
+      "support": 8.0
+    },
+    "Radiology": {
+      "precision": 0.3409090909090909,
+      "recall": 0.3409090909090909,
+      "f1-score": 0.3409090909090909,
+      "support": 44.0
+    },
+    "Surgery": {
+      "precision": 0.7258064516129032,
+      "recall": 0.2571428571428571,
+      "f1-score": 0.379746835443038,
+      "support": 175.0
+    }
+  }
+}

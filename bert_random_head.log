@@ -1,0 +1,38 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 27855.64it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: emilyalsentzer/Bio_ClinicalBERT
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.decoder.weight             | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+{'variant': 'head', 'epoch': 1, 'update': 20, 'updates': 105, 'elapsed_seconds': 65}
+{'variant': 'head', 'epoch': 1, 'update': 40, 'updates': 105, 'elapsed_seconds': 125}
+{'variant': 'head', 'epoch': 1, 'update': 60, 'updates': 105, 'elapsed_seconds': 185}
+{'variant': 'head', 'epoch': 1, 'update': 80, 'updates': 105, 'elapsed_seconds': 246}
+{'variant': 'head', 'epoch': 1, 'update': 100, 'updates': 105, 'elapsed_seconds': 306}
+{'variant': 'head', 'epoch_complete': 1, 'seconds': 320, 'validation_macro_f1': 0.3961159966648535}
+{'variant': 'head', 'epoch': 2, 'update': 20, 'updates': 105, 'elapsed_seconds': 61}
+{'variant': 'head', 'epoch': 2, 'update': 40, 'updates': 105, 'elapsed_seconds': 118}
+{'variant': 'head', 'epoch': 2, 'update': 60, 'updates': 105, 'elapsed_seconds': 178}
+{'variant': 'head', 'epoch': 2, 'update': 80, 'updates': 105, 'elapsed_seconds': 238}
+{'variant': 'head', 'epoch': 2, 'update': 100, 'updates': 105, 'elapsed_seconds': 297}
+{'variant': 'head', 'epoch_complete': 2, 'seconds': 311, 'validation_macro_f1': 0.5380335241589659}
+{'variant': 'head', 'epoch': 3, 'update': 20, 'updates': 105, 'elapsed_seconds': 60}
+{'variant': 'head', 'epoch': 3, 'update': 40, 'updates': 105, 'elapsed_seconds': 120}
+{'variant': 'head', 'epoch': 3, 'update': 60, 'updates': 105, 'elapsed_seconds': 179}
+{'variant': 'head', 'epoch': 3, 'update': 80, 'updates': 105, 'elapsed_seconds': 248}
+{'variant': 'head', 'epoch': 3, 'update': 100, 'updates': 105, 'elapsed_seconds': 304}
+{'variant': 'head', 'epoch_complete': 3, 'seconds': 317, 'validation_macro_f1': 0.5663561766828328}
+COMPLETED random clinicalbert_head 3

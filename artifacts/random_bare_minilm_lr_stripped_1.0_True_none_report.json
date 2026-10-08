@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.5009560229445507,
+  "macro_f1": 0.54245763564897,
+  "minimum_f1": 0.3157894736842105,
+  "per_class": {
+    "Cardiovascular-Pulmonary": {
+      "precision": 0.5064935064935064,
+      "recall": 0.65,
+      "f1-score": 0.5693430656934306,
+      "support": 60.0
+    },
+    "Dermatology": {
+      "precision": 0.21428571428571427,
+      "recall": 0.6,
+      "f1-score": 0.3157894736842105,
+      "support": 5.0
+    },
+    "Gastroenterology": {
+      "precision": 0.4603174603174603,
+      "recall": 0.7435897435897436,
+      "f1-score": 0.5686274509803921,
+      "support": 39.0
+    },
+    "General Medicine": {
+      "precision": 0.7073170731707317,
+      "recall": 0.7073170731707317,
+      "f1-score": 0.7073170731707317,
+      "support": 41.0
+    },
+    "Neurology": {
+      "precision": 0.5185185185185185,
+      "recall": 0.3888888888888889,
+      "f1-score": 0.4444444444444444,
+      "support": 36.0
+    },
+    "Neurosurgery": {
+      "precision": 0.30303030303030304,
+      "recall": 0.625,
+      "f1-score": 0.40816326530612246,
+      "support": 16.0
+    },
+    "Obstetrics-Gynecology": {
+      "precision": 0.47058823529411764,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.6153846153846154,
+      "support": 27.0
+    },
+    "Ophthalmology": {
+      "precision": 0.7,
+      "recall": 1.0,
+      "f1-score": 0.8235294117647058,
+      "support": 14.0
+    },
+    "Orthopedic": {
+      "precision": 0.4875,
+      "recall": 0.6724137931034483,
+      "f1-score": 0.5652173913043478,
+      "support": 58.0
+    },
+    "Psychiatry-Psychology": {
+      "precision": 0.7272727272727273,
+      "recall": 1.0,
+      "f1-score": 0.8421052631578947,
+      "support": 8.0
+    },
+    "Radiology": {
+      "precision": 0.32558139534883723,
+      "recall": 0.3181818181818182,
+      "f1-score": 0.3218390804597701,
+      "support": 44.0
+    },
+    "Surgery": {
+      "precision": 0.6190476190476191,
+      "recall": 0.22285714285714286,
+      "f1-score": 0.3277310924369748,
+      "support": 175.0
+    }
+  }
+}

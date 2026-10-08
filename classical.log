@@ -1,0 +1,95 @@
+random baseline_clinical bare 0.1183 full 0.8917 secs 0
+random wordchar_svm_clinical_0.3_False bare 0.3832 full 0.9646 secs 10
+random wordchar_svm_clinical_0.3_True bare 0.4338 full 0.9689 secs 10
+random wordchar_svm_clinical_1.0_False bare 0.3934 full 0.967 secs 14
+random wordchar_svm_clinical_1.0_True bare 0.4368 full 0.9689 secs 15
+random wordchar_svm_clinical_3.0_False bare 0.3904 full 0.967 secs 25
+random wordchar_svm_clinical_3.0_True bare 0.4254 full 0.9688 secs 24
+random word_lr_clinical_1.0_False bare 0.2004 full 0.9105 secs 3
+random word_lr_clinical_1.0_True bare 0.5156 full 0.9305 secs 2
+random word_lr_clinical_10.0_False bare 0.2958 full 0.9249 secs 4
+random word_lr_clinical_10.0_True bare 0.4051 full 0.9337 secs 3
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17273.62it/s]
+random minilm_lr_clinical_1.0_False bare 0.4223 full 0.9446 secs 46
+random minilm_lr_clinical_1.0_True bare 0.5794 full 0.9578 secs 0
+random minilm_lr_clinical_10.0_False bare 0.3875 full 0.9395 secs 0
+random minilm_lr_clinical_10.0_True bare 0.4834 full 0.9516 secs 0
+random wordchar_svm_stripped_0.3_False bare 0.4004 full 0.9651 secs 7
+random wordchar_svm_stripped_0.3_True bare 0.4231 full 0.9619 secs 10
+random wordchar_svm_stripped_1.0_False bare 0.4018 full 0.963 secs 14
+random wordchar_svm_stripped_1.0_True bare 0.4174 full 0.9614 secs 14
+random wordchar_svm_stripped_3.0_False bare 0.408 full 0.9686 secs 29
+random wordchar_svm_stripped_3.0_True bare 0.4207 full 0.9669 secs 30
+random word_lr_stripped_1.0_False bare 0.2073 full 0.9051 secs 2
+random word_lr_stripped_1.0_True bare 0.5134 full 0.9305 secs 2
+random word_lr_stripped_10.0_False bare 0.2996 full 0.9249 secs 4
+random word_lr_stripped_10.0_True bare 0.4059 full 0.9337 secs 4
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6978.20it/s]
+random minilm_lr_stripped_1.0_False bare 0.4149 full 0.9408 secs 24
+random minilm_lr_stripped_1.0_True bare 0.5619 full 0.9544 secs 0
+random minilm_lr_stripped_10.0_False bare 0.3843 full 0.9468 secs 0
+random minilm_lr_stripped_10.0_True bare 0.4736 full 0.9508 secs 0
+random wordchar_svm_all_0.3_False bare 0.7907 full 0.9682 secs 7
+random wordchar_svm_all_0.3_True bare 0.8109 full 0.9645 secs 7
+random wordchar_svm_all_1.0_False bare 0.8834 full 0.9649 secs 10
+random wordchar_svm_all_1.0_True bare 0.8865 full 0.9603 secs 10
+random wordchar_svm_all_3.0_False bare 0.916 full 0.9649 secs 17
+random wordchar_svm_all_3.0_True bare 0.9173 full 0.9661 secs 19
+random word_lr_all_1.0_False bare 0.2384 full 0.9039 secs 3
+random word_lr_all_1.0_True bare 0.5519 full 0.9305 secs 2
+random word_lr_all_10.0_False bare 0.3553 full 0.9258 secs 5
+random word_lr_all_10.0_True bare 0.5285 full 0.9368 secs 4
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 12817.48it/s]
+random minilm_lr_all_1.0_False bare 0.732 full 0.9398 secs 28
+random minilm_lr_all_1.0_True bare 0.7492 full 0.9539 secs 0
+random minilm_lr_all_10.0_False bare 0.7917 full 0.9459 secs 0
+random minilm_lr_all_10.0_True bare 0.7922 full 0.9556 secs 0
+random lsa_stripped_1.0_True bare 0.5343 full 0.9352 secs 2
+random lsa_stripped_10.0_True bare 0.5333 full 0.9396 secs 2
+grouped baseline_clinical bare 0.135 full 0.8628 secs 0
+grouped wordchar_svm_clinical_0.3_False bare 0.5282 full 0.9488 secs 6
+grouped wordchar_svm_clinical_0.3_True bare 0.6208 full 0.9443 secs 6
+grouped wordchar_svm_clinical_1.0_False bare 0.5488 full 0.9481 secs 9
+grouped wordchar_svm_clinical_1.0_True bare 0.6207 full 0.9441 secs 11
+grouped wordchar_svm_clinical_3.0_False bare 0.552 full 0.9481 secs 28
+grouped wordchar_svm_clinical_3.0_True bare 0.6166 full 0.9441 secs 34
+grouped word_lr_clinical_1.0_False bare 0.2733 full 0.8689 secs 6
+grouped word_lr_clinical_1.0_True bare 0.5354 full 0.9198 secs 3
+grouped word_lr_clinical_10.0_False bare 0.4377 full 0.9183 secs 6
+grouped word_lr_clinical_10.0_True bare 0.5981 full 0.9374 secs 4
+grouped minilm_lr_clinical_1.0_False bare 0.5486 full 0.9298 secs 1
+grouped minilm_lr_clinical_1.0_True bare 0.6047 full 0.9292 secs 0
+grouped minilm_lr_clinical_10.0_False bare 0.5541 full 0.9323 secs 0
+grouped minilm_lr_clinical_10.0_True bare 0.6343 full 0.9436 secs 0
+grouped wordchar_svm_stripped_0.3_False bare 0.5469 full 0.9468 secs 9
+grouped wordchar_svm_stripped_0.3_True bare 0.6293 full 0.9422 secs 9
+grouped wordchar_svm_stripped_1.0_False bare 0.552 full 0.949 secs 16
+grouped wordchar_svm_stripped_1.0_True bare 0.6241 full 0.9466 secs 18
+grouped wordchar_svm_stripped_3.0_False bare 0.5789 full 0.9464 secs 41
+grouped wordchar_svm_stripped_3.0_True bare 0.6204 full 0.9439 secs 42
+grouped word_lr_stripped_1.0_False bare 0.2748 full 0.8689 secs 3
+grouped word_lr_stripped_1.0_True bare 0.5849 full 0.9198 secs 2
+grouped word_lr_stripped_10.0_False bare 0.4475 full 0.9183 secs 5
+grouped word_lr_stripped_10.0_True bare 0.5946 full 0.9352 secs 4
+grouped minilm_lr_stripped_1.0_False bare 0.5417 full 0.9227 secs 0
+grouped minilm_lr_stripped_1.0_True bare 0.623 full 0.927 secs 0
+grouped minilm_lr_stripped_10.0_False bare 0.566 full 0.9427 secs 0
+grouped minilm_lr_stripped_10.0_True bare 0.6185 full 0.9295 secs 0
+grouped wordchar_svm_all_0.3_False bare 0.915 full 0.9371 secs 7
+grouped wordchar_svm_all_0.3_True bare 0.9015 full 0.9368 secs 8
+grouped wordchar_svm_all_1.0_False bare 0.9279 full 0.9351 secs 11
+grouped wordchar_svm_all_1.0_True bare 0.9253 full 0.9325 secs 12
+grouped wordchar_svm_all_3.0_False bare 0.9254 full 0.9324 secs 20
+grouped wordchar_svm_all_3.0_True bare 0.9242 full 0.9337 secs 23
+grouped word_lr_all_1.0_False bare 0.3236 full 0.8702 secs 3
+grouped word_lr_all_1.0_True bare 0.6213 full 0.9191 secs 3
+grouped word_lr_all_10.0_False bare 0.587 full 0.9205 secs 5
+grouped word_lr_all_10.0_True bare 0.6933 full 0.9355 secs 4
+grouped minilm_lr_all_1.0_False bare 0.7765 full 0.9246 secs 0
+grouped minilm_lr_all_1.0_True bare 0.7544 full 0.9266 secs 0
+grouped minilm_lr_all_10.0_False bare 0.8675 full 0.9413 secs 0
+grouped minilm_lr_all_10.0_True bare 0.8242 full 0.9275 secs 0
+grouped lsa_stripped_1.0_True bare 0.555 full 0.9231 secs 3
+grouped lsa_stripped_10.0_True bare 0.5728 full 0.9277 secs 3
+Classical comparisons complete.

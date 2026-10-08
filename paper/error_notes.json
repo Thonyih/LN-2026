@@ -1,0 +1,26 @@
+[
+ {
+  "regime": "random",
+  "source_record": 361,
+  "excerpt": "I was asked to see the patient for C. diff colitis.",
+  "interpretation": "Keywords are absent. Despite the explicit gastrointestinal consultation, the model chooses a broad category. The long admission history and general consultation language may obscure the specialty-specific cue; this is the most frequent confusion pair (four cases)."
+ },
+ {
+  "regime": "random",
+  "source_record": 2582,
+  "excerpt": "Primary right shoulder arthroscopic rotator cuff repair with subacromial decompression.",
+  "interpretation": "Keywords are absent. The shoulder procedure strongly overlaps Orthopedic and Surgery, but the supplied category is the broader Surgery. Anatomical specificity does not reliably identify this corpus's single specialty label."
+ },
+ {
+  "regime": "random",
+  "source_record": 771,
+  "excerpt": "Left third digit numbness and wrist pain.",
+  "interpretation": "A fitting copy is labeled Orthopedic. Duplicate exclusion removes that label, then selects Radiology rather than Neurology. Its procedure name, “MRI C3 - Cord Compression.”, cues imaging; eliminating a known label cannot identify the correct remaining specialty."
+ },
+ {
+  "regime": "random",
+  "source_record": 1480,
+  "excerpt": "This is a 69-year-old white woman with Huntington disease, who presents with the third suicide attempt in the past two months.",
+  "interpretation": "Keywords are absent and no fitting copy exists, so the model decides. The note is a psychiatric consult (“suicide” 11 times, “depression” 10 times) about a neurological disease, and the corpus files the same note twice: source 858 as Neurology and source 1480 as Psychiatry-Psychology. Any single prediction is wrong for one of the two copies."
+ }
+]

@@ -1,0 +1,11 @@
+test_donor_isolation_and_original_preservation (test_integrity.Integrity.test_donor_isolation_and_original_preservation) ... ok
+test_duplicate_exclusion_and_keyword_precedence (test_integrity.Integrity.test_duplicate_exclusion_and_keyword_precedence) ... ok
+test_final_partial_window (test_integrity.Integrity.test_final_partial_window) ... ok
+test_keyword_removal_does_not_erase_remaining_terms (test_integrity.Integrity.test_keyword_removal_does_not_erase_remaining_terms) ... ok
+test_reversed_label_columns_and_reordered_source_records (test_integrity.Integrity.test_reversed_label_columns_and_reordered_source_records) ... ok
+test_weighted_microbatch_gradient_matches_effective_batch (test_integrity.Integrity.test_weighted_microbatch_gradient_matches_effective_batch) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.134s
+
+OK

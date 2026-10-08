@@ -1,0 +1,13 @@
+{
+  "accuracy_95_interval": [
+    0.9384374058289208,
+    0.9735675457807518
+  ],
+  "macro_f1_95_interval": [
+    0.8967859939252985,
+    0.968790668412087
+  ],
+  "replicates": 500,
+  "unit": "normalized note group",
+  "interpretation": "Conditional descriptive uncertainty; does not account for prior exploration or model-selection variability."
+}

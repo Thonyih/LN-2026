@@ -1,0 +1,13 @@
+# Keep runnable code consistent and preserve exact saved-data/output bytes.
+*.py text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+*.csv -text -whitespace
+*.log -text -whitespace
+*.npz -text
+*.png -text
+results.txt -text -whitespace

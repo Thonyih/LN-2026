@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.9196940726577438,
+  "macro_f1": 0.8956004656694144,
+  "minimum_f1": 0.7777777777777778,
+  "per_class": {
+    "Cardiovascular-Pulmonary": {
+      "precision": 0.9322033898305084,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9243697478991597,
+      "support": 60.0
+    },
+    "Dermatology": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1-score": 0.8,
+      "support": 5.0
+    },
+    "Gastroenterology": {
+      "precision": 1.0,
+      "recall": 0.8974358974358975,
+      "f1-score": 0.9459459459459459,
+      "support": 39.0
+    },
+    "General Medicine": {
+      "precision": 0.7959183673469388,
+      "recall": 0.9512195121951219,
+      "f1-score": 0.8666666666666667,
+      "support": 41.0
+    },
+    "Neurology": {
+      "precision": 0.9032258064516129,
+      "recall": 0.7777777777777778,
+      "f1-score": 0.835820895522388,
+      "support": 36.0
+    },
+    "Neurosurgery": {
+      "precision": 0.8823529411764706,
+      "recall": 0.9375,
+      "f1-score": 0.9090909090909091,
+      "support": 16.0
+    },
+    "Obstetrics-Gynecology": {
+      "precision": 0.9615384615384616,
+      "recall": 0.9259259259259259,
+      "f1-score": 0.9433962264150944,
+      "support": 27.0
+    },
+    "Ophthalmology": {
+      "precision": 1.0,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.9629629629629629,
+      "support": 14.0
+    },
+    "Orthopedic": {
+      "precision": 0.896551724137931,
+      "recall": 0.896551724137931,
+      "f1-score": 0.896551724137931,
+      "support": 58.0
+    },
+    "Psychiatry-Psychology": {
+      "precision": 0.7,
+      "recall": 0.875,
+      "f1-score": 0.7777777777777778,
+      "support": 8.0
+    },
+    "Radiology": {
+      "precision": 0.9130434782608695,
+      "recall": 0.9545454545454546,
+      "f1-score": 0.9333333333333333,
+      "support": 44.0
+    },
+    "Surgery": {
+      "precision": 0.9540229885057471,
+      "recall": 0.9485714285714286,
+      "f1-score": 0.9512893982808023,
+      "support": 175.0
+    }
+  }
+}

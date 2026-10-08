@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.6003824091778203,
+  "macro_f1": 0.6234081950085764,
+  "minimum_f1": 0.375,
+  "per_class": {
+    "Cardiovascular-Pulmonary": {
+      "precision": 0.569620253164557,
+      "recall": 0.75,
+      "f1-score": 0.6474820143884892,
+      "support": 60.0
+    },
+    "Dermatology": {
+      "precision": 0.42857142857142855,
+      "recall": 0.6,
+      "f1-score": 0.5,
+      "support": 5.0
+    },
+    "Gastroenterology": {
+      "precision": 0.5818181818181818,
+      "recall": 0.8205128205128205,
+      "f1-score": 0.6808510638297872,
+      "support": 39.0
+    },
+    "General Medicine": {
+      "precision": 0.8333333333333334,
+      "recall": 0.8536585365853658,
+      "f1-score": 0.8433734939759037,
+      "support": 41.0
+    },
+    "Neurology": {
+      "precision": 0.6111111111111112,
+      "recall": 0.6111111111111112,
+      "f1-score": 0.6111111111111112,
+      "support": 36.0
+    },
+    "Neurosurgery": {
+      "precision": 0.375,
+      "recall": 0.375,
+      "f1-score": 0.375,
+      "support": 16.0
+    },
+    "Obstetrics-Gynecology": {
+      "precision": 0.5,
+      "recall": 0.7777777777777778,
+      "f1-score": 0.6086956521739131,
+      "support": 27.0
+    },
+    "Ophthalmology": {
+      "precision": 0.5416666666666666,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.6842105263157895,
+      "support": 14.0
+    },
+    "Orthopedic": {
+      "precision": 0.5116279069767442,
+      "recall": 0.7457627118644068,
+      "f1-score": 0.6068965517241379,
+      "support": 59.0
+    },
+    "Psychiatry-Psychology": {
+      "precision": 0.8888888888888888,
+      "recall": 1.0,
+      "f1-score": 0.9411764705882353,
+      "support": 8.0
+    },
+    "Radiology": {
+      "precision": 0.5128205128205128,
+      "recall": 0.46511627906976744,
+      "f1-score": 0.4878048780487805,
+      "support": 43.0
+    },
+    "Surgery": {
+      "precision": 0.7386363636363636,
+      "recall": 0.37142857142857144,
+      "f1-score": 0.49429657794676807,
+      "support": 175.0
+    }
+  }
+}

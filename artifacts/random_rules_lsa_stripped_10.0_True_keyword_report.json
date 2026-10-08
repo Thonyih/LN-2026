@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.9349904397705545,
+  "macro_f1": 0.9055740297700289,
+  "minimum_f1": 0.7272727272727273,
+  "per_class": {
+    "Cardiovascular-Pulmonary": {
+      "precision": 0.9354838709677419,
+      "recall": 0.9666666666666667,
+      "f1-score": 0.9508196721311475,
+      "support": 60.0
+    },
+    "Dermatology": {
+      "precision": 0.6666666666666666,
+      "recall": 0.8,
+      "f1-score": 0.7272727272727273,
+      "support": 5.0
+    },
+    "Gastroenterology": {
+      "precision": 0.9459459459459459,
+      "recall": 0.8974358974358975,
+      "f1-score": 0.9210526315789473,
+      "support": 39.0
+    },
+    "General Medicine": {
+      "precision": 0.7692307692307693,
+      "recall": 0.975609756097561,
+      "f1-score": 0.8602150537634409,
+      "support": 41.0
+    },
+    "Neurology": {
+      "precision": 0.967741935483871,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.8955223880597015,
+      "support": 36.0
+    },
+    "Neurosurgery": {
+      "precision": 0.8333333333333334,
+      "recall": 0.9375,
+      "f1-score": 0.8823529411764706,
+      "support": 16.0
+    },
+    "Obstetrics-Gynecology": {
+      "precision": 0.9615384615384616,
+      "recall": 0.9259259259259259,
+      "f1-score": 0.9433962264150944,
+      "support": 27.0
+    },
+    "Ophthalmology": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 14.0
+    },
+    "Orthopedic": {
+      "precision": 0.9310344827586207,
+      "recall": 0.9310344827586207,
+      "f1-score": 0.9310344827586207,
+      "support": 58.0
+    },
+    "Psychiatry-Psychology": {
+      "precision": 0.7272727272727273,
+      "recall": 1.0,
+      "f1-score": 0.8421052631578947,
+      "support": 8.0
+    },
+    "Radiology": {
+      "precision": 0.9534883720930233,
+      "recall": 0.9318181818181818,
+      "f1-score": 0.9425287356321839,
+      "support": 44.0
+    },
+    "Surgery": {
+      "precision": 1.0,
+      "recall": 0.9428571428571428,
+      "f1-score": 0.9705882352941176,
+      "support": 175.0
+    }
+  }
+}

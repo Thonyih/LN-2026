@@ -1,0 +1,37 @@
+LIVE REPRODUCTION: frozen internal test, no official inputs
+Model: wordchar_svm_clinical_0.3_True; rule policy: both
+Fit on 1672 labeled cases; evaluate on 523 heldout cases.
+
+Accuracy: 95.79%
+Macro-F1: 0.9402
+Minimum class F1: 0.8000
+
+Per-class F1:
+  Cardiovascular-Pulmonary   0.9672 (n=60)
+  Dermatology                0.8000 (n=5)
+  Gastroenterology           0.9459 (n=39)
+  General Medicine           0.8764 (n=41)
+  Neurology                  0.9429 (n=36)
+  Neurosurgery               0.9412 (n=16)
+  Obstetrics-Gynecology      0.9615 (n=27)
+  Ophthalmology              1.0000 (n=14)
+  Orthopedic                 0.9565 (n=58)
+  Psychiatry-Psychology      0.9333 (n=8)
+  Radiology                  0.9778 (n=44)
+  Surgery                    0.9798 (n=175)
+
+Decision routes (internal test):
+  keyword  444 cases; accuracy 100.00%
+  memory    25 cases; accuracy 76.00%
+  model     54 cases; accuracy 70.37%
+
+Paper error examples:
+  Source 361: I was asked to see the patient for C. diff colitis.
+    Predicted: General Medicine; gold: Gastroenterology; route: model
+  Source 2582: Primary right shoulder arthroscopic rotator cuff repair with subacromial decompression.
+    Predicted: Orthopedic; gold: Surgery; route: model
+  Source 771: Left third digit numbness and wrist pain.
+    Predicted: Radiology; gold: Neurology; route: memory
+
+PASS: live results match the archived selected-system results.
+Fit/evaluation/demo time: 6.0 seconds.

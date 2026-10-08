@@ -1,0 +1,27 @@
+{
+  "random": {
+    "all_classes_present": true,
+    "unique_source_ids": true,
+    "donors_isolated": true,
+    "partial_accumulation_updates_correct": true
+  },
+  "grouped": {
+    "all_classes_present": true,
+    "unique_source_ids": true,
+    "donors_isolated": true,
+    "partial_accumulation_updates_correct": true,
+    "group_partitions_disjoint": true
+  },
+  "selection_recomputed_from_validation": true,
+  "validation_metrics_recomputed_from_scores": true,
+  "outer_metrics_recomputed": true,
+  "canonical_labels_and_source_alignment": true,
+  "official_loader_callers": [
+    "predict.py"
+  ],
+  "results_format_crlf_no_trailing_newline_no_bom": true,
+  "official_predictions": 409,
+  "final_output_hash_matches": true,
+  "unit_tests": "6 passed; see tests.log",
+  "paper_status": "English Markdown; final template PDF pagination and group details remain user tasks"
+}

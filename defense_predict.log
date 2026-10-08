@@ -1,0 +1,3 @@
+Generated results.txt: 409 valid ordered predictions.
+PASS: regenerated results.txt is identical to the original output.
+Prediction command time: 9.5 seconds.

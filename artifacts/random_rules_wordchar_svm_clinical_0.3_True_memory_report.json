@@ -1,0 +1,79 @@
+{
+  "accuracy": 0.7246653919694073,
+  "macro_f1": 0.7060245340414038,
+  "minimum_f1": 0.4444444444444444,
+  "per_class": {
+    "Cardiovascular-Pulmonary": {
+      "precision": 0.7384615384615385,
+      "recall": 0.8,
+      "f1-score": 0.768,
+      "support": 60.0
+    },
+    "Dermatology": {
+      "precision": 0.5,
+      "recall": 0.4,
+      "f1-score": 0.4444444444444444,
+      "support": 5.0
+    },
+    "Gastroenterology": {
+      "precision": 0.6382978723404256,
+      "recall": 0.7692307692307693,
+      "f1-score": 0.6976744186046512,
+      "support": 39.0
+    },
+    "General Medicine": {
+      "precision": 0.6730769230769231,
+      "recall": 0.8536585365853658,
+      "f1-score": 0.7526881720430108,
+      "support": 41.0
+    },
+    "Neurology": {
+      "precision": 0.7931034482758621,
+      "recall": 0.6388888888888888,
+      "f1-score": 0.7076923076923077,
+      "support": 36.0
+    },
+    "Neurosurgery": {
+      "precision": 0.5555555555555556,
+      "recall": 0.625,
+      "f1-score": 0.5882352941176471,
+      "support": 16.0
+    },
+    "Obstetrics-Gynecology": {
+      "precision": 0.6857142857142857,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.7741935483870968,
+      "support": 27.0
+    },
+    "Ophthalmology": {
+      "precision": 0.75,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.8,
+      "support": 14.0
+    },
+    "Orthopedic": {
+      "precision": 0.6461538461538462,
+      "recall": 0.7241379310344828,
+      "f1-score": 0.6829268292682927,
+      "support": 58.0
+    },
+    "Psychiatry-Psychology": {
+      "precision": 0.8571428571428571,
+      "recall": 0.75,
+      "f1-score": 0.8,
+      "support": 8.0
+    },
+    "Radiology": {
+      "precision": 0.6730769230769231,
+      "recall": 0.7954545454545454,
+      "f1-score": 0.7291666666666666,
+      "support": 44.0
+    },
+    "Surgery": {
+      "precision": 0.8421052631578947,
+      "recall": 0.64,
+      "f1-score": 0.7272727272727273,
+      "support": 175.0
+    }
+  }
+}

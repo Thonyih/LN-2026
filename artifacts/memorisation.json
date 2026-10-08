@@ -1,0 +1,50 @@
+{
+  "baseline_clinical_none": {
+    "test_rows": 523,
+    "repeated_test_notes": 190,
+    "gold_label_new_for_repeated_notes": "189/190",
+    "memorisation_rate": 0.516,
+    "accuracy_on_repeated": 0.332,
+    "accuracy_on_unseen": 0.384
+  },
+  "clinicalbert_headtail_none": {
+    "test_rows": 523,
+    "repeated_test_notes": 190,
+    "gold_label_new_for_repeated_notes": "189/190",
+    "memorisation_rate": 0.579,
+    "accuracy_on_repeated": 0.353,
+    "accuracy_on_unseen": 0.646
+  },
+  "lsa_stripped_1.0_True_none": {
+    "test_rows": 523,
+    "repeated_test_notes": 190,
+    "gold_label_new_for_repeated_notes": "189/190",
+    "memorisation_rate": 0.489,
+    "accuracy_on_repeated": 0.426,
+    "accuracy_on_unseen": 0.571
+  },
+  "minilm_lr_stripped_1.0_True_none": {
+    "test_rows": 523,
+    "repeated_test_notes": 190,
+    "gold_label_new_for_repeated_notes": "189/190",
+    "memorisation_rate": 0.663,
+    "accuracy_on_repeated": 0.279,
+    "accuracy_on_unseen": 0.628
+  },
+  "word_lr_stripped_1.0_True_none": {
+    "test_rows": 523,
+    "repeated_test_notes": 190,
+    "gold_label_new_for_repeated_notes": "189/190",
+    "memorisation_rate": 0.721,
+    "accuracy_on_repeated": 0.247,
+    "accuracy_on_unseen": 0.592
+  },
+  "wordchar_svm_stripped_0.3_True_none": {
+    "test_rows": 523,
+    "repeated_test_notes": 190,
+    "gold_label_new_for_repeated_notes": "189/190",
+    "memorisation_rate": 1.0,
+    "accuracy_on_repeated": 0.0,
+    "accuracy_on_unseen": 0.646
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "random": {
+    "accuracy_95_interval": [
+      0.08741396761133603,
+      0.16604143199098848
+    ],
+    "macro_f1_95_interval": [
+      0.07836473843003103,
+      0.16868777051938016
+    ],
+    "replicates": 500,
+    "unit": "normalized note group",
+    "interpretation": "Conditional descriptive uncertainty; does not account for prior exploration or model-selection variability.",
+    "point_difference": {
+      "accuracy": 0.12810707456978965,
+      "macro_f1": 0.11770361395408874
+    }
+  },
+  "grouped": {
+    "accuracy_95_interval": [
+      -0.04645225821758262,
+      0.007444599057093657
+    ],
+    "macro_f1_95_interval": [
+      -0.0716117942391353,
+      0.05270772330906525
+    ],
+    "replicates": 500,
+    "unit": "normalized note group",
+    "interpretation": "Conditional descriptive uncertainty; does not account for prior exploration or model-selection variability.",
+    "point_difference": {
+      "accuracy": -0.021032504780114647,
+      "macro_f1": -0.011015929705633587
+    }
+  }
+}

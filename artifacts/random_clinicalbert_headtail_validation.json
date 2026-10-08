@@ -1,0 +1,542 @@
+[
+  {
+    "regime": "random",
+    "name": "clinicalbert_headtail",
+    "spec": {
+      "family": "clinicalbert",
+      "condition": "stripped",
+      "variant": "headtail",
+      "epochs": 3
+    },
+    "policy": "none",
+    "metrics": {
+      "accuracy": 0.5430622009569378,
+      "macro_f1": 0.5870342677300805,
+      "minimum_f1": 0.3333333333333333,
+      "per_class": {
+        "Cardiovascular-Pulmonary": {
+          "precision": 0.47058823529411764,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.5517241379310345,
+          "support": 48.0
+        },
+        "Dermatology": {
+          "precision": 0.6666666666666666,
+          "recall": 0.5,
+          "f1-score": 0.5714285714285714,
+          "support": 4.0
+        },
+        "Gastroenterology": {
+          "precision": 0.5102040816326531,
+          "recall": 0.8064516129032258,
+          "f1-score": 0.625,
+          "support": 31.0
+        },
+        "General Medicine": {
+          "precision": 0.7297297297297297,
+          "recall": 0.8181818181818182,
+          "f1-score": 0.7714285714285715,
+          "support": 33.0
+        },
+        "Neurology": {
+          "precision": 0.64,
+          "recall": 0.5517241379310345,
+          "f1-score": 0.5925925925925926,
+          "support": 29.0
+        },
+        "Neurosurgery": {
+          "precision": 0.375,
+          "recall": 0.75,
+          "f1-score": 0.5,
+          "support": 12.0
+        },
+        "Obstetrics-Gynecology": {
+          "precision": 0.4186046511627907,
+          "recall": 0.8181818181818182,
+          "f1-score": 0.5538461538461539,
+          "support": 22.0
+        },
+        "Ophthalmology": {
+          "precision": 0.625,
+          "recall": 0.9090909090909091,
+          "f1-score": 0.7407407407407407,
+          "support": 11.0
+        },
+        "Orthopedic": {
+          "precision": 0.543859649122807,
+          "recall": 0.6595744680851063,
+          "f1-score": 0.5961538461538461,
+          "support": 47.0
+        },
+        "Psychiatry-Psychology": {
+          "precision": 0.75,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.8,
+          "support": 7.0
+        },
+        "Radiology": {
+          "precision": 0.34375,
+          "recall": 0.3235294117647059,
+          "f1-score": 0.3333333333333333,
+          "support": 34.0
+        },
+        "Surgery": {
+          "precision": 0.7142857142857143,
+          "recall": 0.2857142857142857,
+          "f1-score": 0.40816326530612246,
+          "support": 140.0
+        }
+      }
+    }
+  },
+  {
+    "regime": "random",
+    "name": "clinicalbert_headtail",
+    "spec": {
+      "family": "clinicalbert",
+      "condition": "stripped",
+      "variant": "headtail",
+      "epochs": 3
+    },
+    "policy": "keyword",
+    "metrics": {
+      "accuracy": 0.9401913875598086,
+      "macro_f1": 0.9359184326090361,
+      "minimum_f1": 0.8615384615384616,
+      "per_class": {
+        "Cardiovascular-Pulmonary": {
+          "precision": 0.8823529411764706,
+          "recall": 0.9375,
+          "f1-score": 0.9090909090909091,
+          "support": 48.0
+        },
+        "Dermatology": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Gastroenterology": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9354838709677419,
+          "f1-score": 0.9508196721311475,
+          "support": 31.0
+        },
+        "General Medicine": {
+          "precision": 0.875,
+          "recall": 0.8484848484848485,
+          "f1-score": 0.8615384615384616,
+          "support": 33.0
+        },
+        "Neurology": {
+          "precision": 0.896551724137931,
+          "recall": 0.896551724137931,
+          "f1-score": 0.896551724137931,
+          "support": 29.0
+        },
+        "Neurosurgery": {
+          "precision": 0.9166666666666666,
+          "recall": 0.9166666666666666,
+          "f1-score": 0.9166666666666666,
+          "support": 12.0
+        },
+        "Obstetrics-Gynecology": {
+          "precision": 0.88,
+          "recall": 1.0,
+          "f1-score": 0.9361702127659575,
+          "support": 22.0
+        },
+        "Ophthalmology": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11.0
+        },
+        "Orthopedic": {
+          "precision": 0.92,
+          "recall": 0.9787234042553191,
+          "f1-score": 0.9484536082474226,
+          "support": 47.0
+        },
+        "Psychiatry-Psychology": {
+          "precision": 0.7777777777777778,
+          "recall": 1.0,
+          "f1-score": 0.875,
+          "support": 7.0
+        },
+        "Radiology": {
+          "precision": 1.0,
+          "recall": 0.9411764705882353,
+          "f1-score": 0.9696969696969697,
+          "support": 34.0
+        },
+        "Surgery": {
+          "precision": 0.9924812030075187,
+          "recall": 0.9428571428571428,
+          "f1-score": 0.967032967032967,
+          "support": 140.0
+        }
+      }
+    }
+  },
+  {
+    "regime": "random",
+    "name": "clinicalbert_headtail",
+    "spec": {
+      "family": "clinicalbert",
+      "condition": "stripped",
+      "variant": "headtail",
+      "epochs": 3
+    },
+    "policy": "learned_keyword",
+    "metrics": {
+      "accuracy": 0.9401913875598086,
+      "macro_f1": 0.9359184326090361,
+      "minimum_f1": 0.8615384615384616,
+      "per_class": {
+        "Cardiovascular-Pulmonary": {
+          "precision": 0.8823529411764706,
+          "recall": 0.9375,
+          "f1-score": 0.9090909090909091,
+          "support": 48.0
+        },
+        "Dermatology": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 4.0
+        },
+        "Gastroenterology": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9354838709677419,
+          "f1-score": 0.9508196721311475,
+          "support": 31.0
+        },
+        "General Medicine": {
+          "precision": 0.875,
+          "recall": 0.8484848484848485,
+          "f1-score": 0.8615384615384616,
+          "support": 33.0
+        },
+        "Neurology": {
+          "precision": 0.896551724137931,
+          "recall": 0.896551724137931,
+          "f1-score": 0.896551724137931,
+          "support": 29.0
+        },
+        "Neurosurgery": {
+          "precision": 0.9166666666666666,
+          "recall": 0.9166666666666666,
+          "f1-score": 0.9166666666666666,
+          "support": 12.0
+        },
+        "Obstetrics-Gynecology": {
+          "precision": 0.88,
+          "recall": 1.0,
+          "f1-score": 0.9361702127659575,
+          "support": 22.0
+        },
+        "Ophthalmology": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11.0
+        },
+        "Orthopedic": {
+          "precision": 0.92,
+          "recall": 0.9787234042553191,
+          "f1-score": 0.9484536082474226,
+          "support": 47.0
+        },
+        "Psychiatry-Psychology": {
+          "precision": 0.7777777777777778,
+          "recall": 1.0,
+          "f1-score": 0.875,
+          "support": 7.0
+        },
+        "Radiology": {
+          "precision": 1.0,
+          "recall": 0.9411764705882353,
+          "f1-score": 0.9696969696969697,
+          "support": 34.0
+        },
+        "Surgery": {
+          "precision": 0.9924812030075187,
+          "recall": 0.9428571428571428,
+          "f1-score": 0.967032967032967,
+          "support": 140.0
+        }
+      }
+    }
+  },
+  {
+    "regime": "random",
+    "name": "clinicalbert_headtail",
+    "spec": {
+      "family": "clinicalbert",
+      "condition": "stripped",
+      "variant": "headtail",
+      "epochs": 3
+    },
+    "policy": "memory",
+    "metrics": {
+      "accuracy": 0.7320574162679426,
+      "macro_f1": 0.726112775148014,
+      "minimum_f1": 0.5,
+      "per_class": {
+        "Cardiovascular-Pulmonary": {
+          "precision": 0.7037037037037037,
+          "recall": 0.7916666666666666,
+          "f1-score": 0.7450980392156863,
+          "support": 48.0
+        },
+        "Dermatology": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5,
+          "support": 4.0
+        },
+        "Gastroenterology": {
+          "precision": 0.6046511627906976,
+          "recall": 0.8387096774193549,
+          "f1-score": 0.7027027027027027,
+          "support": 31.0
+        },
+        "General Medicine": {
+          "precision": 0.717948717948718,
+          "recall": 0.8484848484848485,
+          "f1-score": 0.7777777777777778,
+          "support": 33.0
+        },
+        "Neurology": {
+          "precision": 0.7142857142857143,
+          "recall": 0.6896551724137931,
+          "f1-score": 0.7017543859649122,
+          "support": 29.0
+        },
+        "Neurosurgery": {
+          "precision": 0.625,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.7142857142857143,
+          "support": 12.0
+        },
+        "Obstetrics-Gynecology": {
+          "precision": 0.6451612903225806,
+          "recall": 0.9090909090909091,
+          "f1-score": 0.7547169811320755,
+          "support": 22.0
+        },
+        "Ophthalmology": {
+          "precision": 0.7142857142857143,
+          "recall": 0.9090909090909091,
+          "f1-score": 0.8,
+          "support": 11.0
+        },
+        "Orthopedic": {
+          "precision": 0.7169811320754716,
+          "recall": 0.8085106382978723,
+          "f1-score": 0.76,
+          "support": 47.0
+        },
+        "Psychiatry-Psychology": {
+          "precision": 0.8571428571428571,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.8571428571428571,
+          "support": 7.0
+        },
+        "Radiology": {
+          "precision": 0.6764705882352942,
+          "recall": 0.6764705882352942,
+          "f1-score": 0.6764705882352942,
+          "support": 34.0
+        },
+        "Surgery": {
+          "precision": 0.8947368421052632,
+          "recall": 0.6071428571428571,
+          "f1-score": 0.723404255319149,
+          "support": 140.0
+        }
+      }
+    }
+  },
+  {
+    "regime": "random",
+    "name": "clinicalbert_headtail",
+    "spec": {
+      "family": "clinicalbert",
+      "condition": "stripped",
+      "variant": "headtail",
+      "epochs": 3
+    },
+    "policy": "both",
+    "metrics": {
+      "accuracy": 0.9521531100478469,
+      "macro_f1": 0.9437279319751172,
+      "minimum_f1": 0.8656716417910447,
+      "per_class": {
+        "Cardiovascular-Pulmonary": {
+          "precision": 0.9183673469387755,
+          "recall": 0.9375,
+          "f1-score": 0.9278350515463918,
+          "support": 48.0
+        },
+        "Dermatology": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1-score": 0.8888888888888888,
+          "support": 4.0
+        },
+        "Gastroenterology": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9354838709677419,
+          "f1-score": 0.9508196721311475,
+          "support": 31.0
+        },
+        "General Medicine": {
+          "precision": 0.8529411764705882,
+          "recall": 0.8787878787878788,
+          "f1-score": 0.8656716417910447,
+          "support": 33.0
+        },
+        "Neurology": {
+          "precision": 0.896551724137931,
+          "recall": 0.896551724137931,
+          "f1-score": 0.896551724137931,
+          "support": 29.0
+        },
+        "Neurosurgery": {
+          "precision": 0.9230769230769231,
+          "recall": 1.0,
+          "f1-score": 0.96,
+          "support": 12.0
+        },
+        "Obstetrics-Gynecology": {
+          "precision": 0.9565217391304348,
+          "recall": 1.0,
+          "f1-score": 0.9777777777777777,
+          "support": 22.0
+        },
+        "Ophthalmology": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11.0
+        },
+        "Orthopedic": {
+          "precision": 0.9787234042553191,
+          "recall": 0.9787234042553191,
+          "f1-score": 0.9787234042553191,
+          "support": 47.0
+        },
+        "Psychiatry-Psychology": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1-score": 0.9333333333333333,
+          "support": 7.0
+        },
+        "Radiology": {
+          "precision": 0.9705882352941176,
+          "recall": 0.9705882352941176,
+          "f1-score": 0.9705882352941176,
+          "support": 34.0
+        },
+        "Surgery": {
+          "precision": 0.9925925925925926,
+          "recall": 0.9571428571428572,
+          "f1-score": 0.9745454545454545,
+          "support": 140.0
+        }
+      }
+    }
+  },
+  {
+    "regime": "random",
+    "name": "clinicalbert_headtail",
+    "spec": {
+      "family": "clinicalbert",
+      "condition": "stripped",
+      "variant": "headtail",
+      "epochs": 3
+    },
+    "policy": "learned_both",
+    "metrics": {
+      "accuracy": 0.9521531100478469,
+      "macro_f1": 0.9437279319751172,
+      "minimum_f1": 0.8656716417910447,
+      "per_class": {
+        "Cardiovascular-Pulmonary": {
+          "precision": 0.9183673469387755,
+          "recall": 0.9375,
+          "f1-score": 0.9278350515463918,
+          "support": 48.0
+        },
+        "Dermatology": {
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1-score": 0.8888888888888888,
+          "support": 4.0
+        },
+        "Gastroenterology": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9354838709677419,
+          "f1-score": 0.9508196721311475,
+          "support": 31.0
+        },
+        "General Medicine": {
+          "precision": 0.8529411764705882,
+          "recall": 0.8787878787878788,
+          "f1-score": 0.8656716417910447,
+          "support": 33.0
+        },
+        "Neurology": {
+          "precision": 0.896551724137931,
+          "recall": 0.896551724137931,
+          "f1-score": 0.896551724137931,
+          "support": 29.0
+        },
+        "Neurosurgery": {
+          "precision": 0.9230769230769231,
+          "recall": 1.0,
+          "f1-score": 0.96,
+          "support": 12.0
+        },
+        "Obstetrics-Gynecology": {
+          "precision": 0.9565217391304348,
+          "recall": 1.0,
+          "f1-score": 0.9777777777777777,
+          "support": 22.0
+        },
+        "Ophthalmology": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11.0
+        },
+        "Orthopedic": {
+          "precision": 0.9787234042553191,
+          "recall": 0.9787234042553191,
+          "f1-score": 0.9787234042553191,
+          "support": 47.0
+        },
+        "Psychiatry-Psychology": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1-score": 0.9333333333333333,
+          "support": 7.0
+        },
+        "Radiology": {
+          "precision": 0.9705882352941176,
+          "recall": 0.9705882352941176,
+          "f1-score": 0.9705882352941176,
+          "support": 34.0
+        },
+        "Surgery": {
+          "precision": 0.9925925925925926,
+          "recall": 0.9571428571428572,
+          "f1-score": 0.9745454545454545,
+          "support": 140.0
+        }
+      }
+    }
+  }
+]

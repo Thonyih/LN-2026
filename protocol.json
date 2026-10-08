@@ -1,0 +1,62 @@
+{
+  "seed": 20261008,
+  "outer_folds": 5,
+  "inner_folds": 5,
+  "evaluated_outer_fold": 0,
+  "regimes": [
+    "random",
+    "grouped"
+  ],
+  "selection": "validation macro-F1, minimum F1, then accuracy",
+  "final_submission_selection": "random validation full-system macro-F1; random is a development hypothesis about repeated-note conditions, not a conclusion from inspecting official inputs",
+  "conditions": [
+    "clinical",
+    "stripped",
+    "all"
+  ],
+  "core_models": [
+    "baseline",
+    "word_lr",
+    "wordchar_svm",
+    "lsa",
+    "minilm_lr",
+    "clinicalbert_head",
+    "clinicalbert_headtail"
+  ],
+  "C_svm": [
+    0.3,
+    1.0,
+    3.0
+  ],
+  "C_logistic": [
+    1.0,
+    10.0
+  ],
+  "balanced": [
+    false,
+    true
+  ],
+  "augmentation": [
+    "none",
+    "resample",
+    "dropout",
+    "sections"
+  ],
+  "augmentation_cv_folds": 3,
+  "bert": {
+    "epochs": 3,
+    "max_length": 512,
+    "batch_size": 8,
+    "gradient_accumulation": 2,
+    "lr": 3e-05,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.1,
+    "seed": 42,
+    "revision": "d5892b39a4adaed74b92212a44081509db72f87b"
+  },
+  "minilm_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "ensemble": "optional; not part of this fixed primary protocol",
+  "context": "Prior runs explored all supplied labeled cases. This fixed rerun is retrospective, not previously-unseen external confirmation. Outer results are not used to change candidate choices.",
+  "official_inputs": "Only predict.py may load test_no_labels.csv; final output only.",
+  "outer_evaluation_fitting": "All compared models use the same train partition; validation selects configuration/checkpoint. No train+validation refit before outer evaluation. Final winner is refitted on all valid labeled data."
+}

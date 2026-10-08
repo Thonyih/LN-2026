@@ -1,0 +1,11 @@
+{
+  "rows": 409,
+  "all_labels_valid": true,
+  "header": false,
+  "order": "original official record order",
+  "selected_model": "wordchar_svm_clinical_0.3_True",
+  "policy": "both",
+  "train_sha256": "028a886eca5f26ff61d9cf59ed087efd91d2689e879eac844be44b222f582dc1",
+  "official_sha256": "03fa8176e4727a910480336931cc37748d5f4c6a007cdd2ab4a463e4e66695c9",
+  "results_sha256": "b468e30c960352a0cea98be39bfd8db4c32e6c9ba23da14c7e7fc30c107b98ae"
+}
