@@ -1,7 +1,7 @@
 """The only execution path that loads official test inputs: final selected-model inference."""
 
 import numpy as np
-from config import ART, ROOT, CACHE, LABELS, PACK, load, save, sha
+from config import ART, ROOT, CACHE, LABELS, PACK, EXPECTED_TEST_ROWS, load, save, sha
 from data import load_train, load_official_for_prediction, clean, write_labels
 from models import model, score
 from augment import generate
@@ -46,7 +46,7 @@ def main():
         est.fit(x, tr.medical_specialty)
         s = score(est, xt)
     pred, routes = apply(official, s, training, winner["policy"])
-    assert len(pred) == len(official) == 409
+    assert len(pred) == len(official) == EXPECTED_TEST_ROWS, (len(pred), len(official))
     write_labels(ROOT / "results.txt", pred)
     assert (ROOT / "results.txt").read_text().splitlines() == pred.tolist()
     # Store output provenance, never test-set analysis or labels.

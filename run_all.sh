@@ -13,4 +13,5 @@ TASK_PYTHON="$TASK_DIR/.venv/bin/python"
 "$TASK_PYTHON" "$TASK_DIR/src/predict.py" > "$TASK_DIR/predict.log" 2>&1
 "$TASK_PYTHON" "$TASK_DIR/src/memorisation.py" > "$TASK_DIR/memorisation.log" 2>&1
 "$TASK_PYTHON" "$TASK_DIR/src/report.py"
+"$TASK_PYTHON" "$TASK_DIR/src/figures.py" > "$TASK_DIR/figures.log" 2>&1
 "$TASK_PYTHON" "$TASK_DIR/src/verify.py"

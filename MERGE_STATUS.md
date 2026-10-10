@@ -23,7 +23,7 @@ This scope provides fair shared fitting data on an M4/16 GB, covers at least thr
 
 ## Execution status — completed
 
-All six model families and all four ClinicalBERT comparisons completed. The controlled augmentation study, frozen outer evaluation, final all-data SVM refit, 409 ordered predictions and English manuscript are complete. Six integrity unit tests passed. The final audit recomputed all development scores and outer metrics, verified per-class results against saved predictions, checked label/source order, isolated every donor and confirmed disjoint grouped partitions. See artifacts/integrity_verification.json and verification.log.
+All six model families and all four ClinicalBERT comparisons completed. The controlled augmentation study, frozen outer evaluation, final all-data SVM refit, ordered predictions (398 since the professor's cleaned test set of 10 Oct 2026; previously 409) and English manuscript are complete. Six integrity unit tests passed. The final audit recomputed all development scores and outer metrics, verified per-class results against saved predictions, checked label/source order, isolated every donor and confirmed disjoint grouped partitions. See artifacts/integrity_verification.json and verification.log.
 
 The random development winner is the clinical-field word/character SVM (C=0.3, balanced weights) with fixed keyword mapping and duplicate exclusion. Its 523-case random outer test has accuracy 95.79%, macro-F1 0.9402 and minimum class F1 0.80. The separately selected grouped system has accuracy 93.50%, macro-F1 0.9141 and minimum F1 0.75. Official performance is unknown; the final choice was not changed after outer scoring.
 

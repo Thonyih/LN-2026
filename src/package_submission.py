@@ -23,13 +23,13 @@ def main():
         z.write(a.paper_pdf, f"{a.group_number}.pdf")
         z.write(ROOT / "results.txt", "results.txt")
         for p in (ROOT / "src").glob("*.py"):
-            z.write(p, "llm-codex-merged/src/" + p.name)
+            z.write(p, "llm-final/src/" + p.name)
         for p in (ROOT / "tests").glob("*.py"):
-            z.write(p, "llm-codex-merged/tests/" + p.name)
+            z.write(p, "llm-final/tests/" + p.name)
         for p in (ROOT / "data/augmented").glob("*.csv"):
-            z.write(p, "llm-codex-merged/data/augmented/" + p.name)
+            z.write(p, "llm-final/data/augmented/" + p.name)
         for p in (ROOT / "artifacts").glob("*_splits.csv"):
-            z.write(p, "llm-codex-merged/artifacts/" + p.name)
+            z.write(p, "llm-final/artifacts/" + p.name)
         # Include the reviewed error interpretations needed by report.py on a rerun.
         for n in [
             "error_notes.json",
@@ -40,7 +40,7 @@ def main():
         ]:
             p = ROOT / "paper" / n
             if p.exists():
-                z.write(p, "llm-codex-merged/paper/" + n)
+                z.write(p, "llm-final/paper/" + n)
         for n in [
             "selection_manifest.json",
             "data_audit.json",
@@ -50,24 +50,28 @@ def main():
         ]:
             p = ROOT / "artifacts" / n
             if p.exists():
-                z.write(p, "llm-codex-merged/artifacts/" + n)
+                z.write(p, "llm-final/artifacts/" + n)
         for n in ["random_confusion.png", "grouped_confusion.png"]:
             p = ROOT / "artifacts" / n
             if p.exists():
-                z.write(p, "llm-codex-merged/artifacts/" + n)
+                z.write(p, "llm-final/artifacts/" + n)
         # Preserve the documented relative paths without including model weights.
         for n in ["train.csv", "test_no_labels.csv", "Project-2026-Description.pdf"]:
-            z.write(PACK / n, "StudentsPack/" + n)
+            z.write(PACK / n, "StudentsPack-v2/" + n)
         z.write(
             PACK / "Project-Template/template.tex",
-            "StudentsPack/Project-Template/template.tex",
+            "StudentsPack-v2/Project-Template/template.tex",
         )
+        for p in sorted((ROOT / "report-draft").rglob("*")):
+            if p.is_file():
+                z.write(p, "llm-final/" + str(p.relative_to(ROOT)))
         for n in [
             "README.md",
             "MODEL_EXPLANATIONS.md",
             "DEFENSE_GUIDE.md",
             "PROFESSOR_REQUIREMENTS.md",
             "MERGE_STATUS.md",
+            "IMPROVEMENTS.md",
             "tests.log",
             "requirements.txt",
             "requirements-lock.txt",
@@ -76,7 +80,7 @@ def main():
             "run_all.sh",
             "run_training_queue.sh",
         ]:
-            z.write(ROOT / n, "llm-codex-merged/" + n)
+            z.write(ROOT / n, "llm-final/" + n)
     print(destination)
 
 

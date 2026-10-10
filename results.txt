@@ -15,8 +15,6 @@ Surgery
 Neurosurgery
 Gastroenterology
 Surgery
-Orthopedic
-Ophthalmology
 Gastroenterology
 Psychiatry-Psychology
 Surgery
@@ -78,7 +76,6 @@ Surgery
 Radiology
 Surgery
 Surgery
-Surgery
 Neurology
 Neurology
 Surgery
@@ -164,7 +161,6 @@ Surgery
 Surgery
 Surgery
 Surgery
-Neurology
 Surgery
 General Medicine
 Neurology
@@ -238,8 +234,6 @@ Radiology
 Surgery
 Radiology
 General Medicine
-Surgery
-Obstetrics-Gynecology
 Surgery
 Surgery
 Cardiovascular-Pulmonary
@@ -322,8 +316,6 @@ Psychiatry-Psychology
 Cardiovascular-Pulmonary
 Neurosurgery
 Surgery
-Neurosurgery
-Neurology
 General Medicine
 Orthopedic
 Radiology
@@ -355,8 +347,6 @@ Neurology
 Radiology
 Dermatology
 Surgery
-Cardiovascular-Pulmonary
-Orthopedic
 Psychiatry-Psychology
 Orthopedic
 Radiology
@@ -374,7 +364,6 @@ Surgery
 Orthopedic
 Surgery
 Neurology
-Obstetrics-Gynecology
 Neurosurgery
 General Medicine
 Surgery

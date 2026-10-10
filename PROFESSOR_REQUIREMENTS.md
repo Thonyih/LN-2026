@@ -1,6 +1,6 @@
 # Professor requirements and implementation map
 
-Sources: `../StudentsPack/Project-2026-Description.pdf` and `../StudentsPack/Project-Template/template.tex`. Deadline: 16 October 2026, 23:59, via Fenix. This file distinguishes computed project deliverables from group-supplied final submission details.
+Sources: `../StudentsPack-v2/Project-2026-Description.pdf` and `../StudentsPack-v2/Project-Template/template.tex` (identical to the first pack). On 10 Oct 2026 the professor released a cleaned test set (398 rows), asked groups to run their best model on it, reminded that the whole training set may be used, and pointed to the template's information. Deadline: 16 October 2026, 23:59, via Fenix. This file distinguishes computed project deliverables from group-supplied final submission details.
 
 | Requirement | Implementation / evidence |
 | --- | --- |

@@ -3,7 +3,7 @@
 import ast, json, math
 import numpy as np, pandas as pd
 from sklearn.model_selection import StratifiedKFold, StratifiedGroupKFold
-from config import ROOT, ART, LABELS, SEED, save, load, sha
+from config import ROOT, ART, LABELS, SEED, PACK, EXPECTED_TEST_ROWS, save, load, sha
 from evaluation import metrics, read_scores
 from classical import rank
 
@@ -143,18 +143,22 @@ def main():
             ):
                 callers.append(p.name)
     assert callers == ["predict.py"], callers
+    final = load(ART / "final_output_verification.json")
+    # results.txt must belong to the CURRENT official file (hash only; the file is not parsed here)
+    assert final["official_sha256"] == sha(PACK / "test_no_labels.csv"), "results.txt made from another test file"
+    n = int(final["rows"])
+    assert n == EXPECTED_TEST_ROWS, n
     out = (ROOT / "results.txt").read_text().splitlines()
-    assert len(out) == 409 and all(l in LABELS for l in out)
+    assert len(out) == n and all(l in LABELS for l in out)
     raw = (ROOT / "results.txt").read_bytes()          # same conventions as the official CSV files
-    assert raw.count(b"\r\n") == 408 and raw.count(b"\n") == 408 and not raw.endswith(b"\n"), "CRLF/newline"
+    assert raw.count(b"\r\n") == n - 1 and raw.count(b"\n") == n - 1 and not raw.endswith(b"\n"), "CRLF/newline"
     assert not raw.startswith(b"\xef\xbb\xbf") and all(l == l.strip() for l in out), "BOM/whitespace"
     assert len(set(out)) == 12, "all 12 specialties should be predicted"
-    final = load(ART / "final_output_verification.json")
     assert final["results_sha256"] == sha(ROOT / "results.txt")
     scores = np.load(ART / "final_prediction_scores.npz")
-    assert scores["source_record"].tolist() == list(range(409))
+    assert scores["source_record"].tolist() == list(range(n))
     assert scores["labels"].tolist() == LABELS
-    assert scores["scores"].shape == (409, 12) and np.isfinite(scores["scores"]).all()
+    assert scores["scores"].shape == (n, 12) and np.isfinite(scores["scores"]).all()
     checks.update(
         {
             "selection_recomputed_from_validation": True,

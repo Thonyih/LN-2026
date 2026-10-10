@@ -6,7 +6,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "artifacts"
 CACHE = ROOT / "cache"
-PACK = ROOT.parent / "StudentsPack"
+# Course data. Since 10 Oct 2026 the professor provides a cleaned test set (398 rows: the original 409 minus
+# 11 broken rows); train.csv, the description and the template are byte-identical to the first pack.
+PACK = ROOT.parent / "StudentsPack-v2"
+EXPECTED_TEST_ROWS = 398
 for p in [ART, CACHE, ROOT / "paper", ROOT / "data/augmented"]:
     p.mkdir(parents=True, exist_ok=True)
 os.environ["HF_HOME"] = str(CACHE / "huggingface")

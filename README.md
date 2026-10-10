@@ -17,11 +17,11 @@ git clone https://github.com/Thonyih/LN-2026.git llm-final
 cd llm-final
 ```
 
-Download the professor's **StudentsPack** from the course materials and place it **beside** the checkout:
+Download the professor's **StudentsPack-v2** (released 10 Oct 2026 with the cleaned 398-row test set) from the course materials and place it **beside** the checkout, under that folder name:
 
 ```text
 your-working-directory/
-├── StudentsPack/
+├── StudentsPack-v2/
 │   ├── train.csv
 │   ├── test_no_labels.csv
 │   ├── Project-2026-Description.pdf
@@ -34,7 +34,7 @@ your-working-directory/
     └── ...
 ```
 
-Only the final project folder is uploaded here. The separate StudentsPack is required for the commands below. Keep its original files: the demo checks the training-file fingerprint against the archived experiment.
+Only the final project folder is uploaded here. The separate StudentsPack-v2 is required for the commands below. Keep its original files: the demo checks the training-file fingerprint against the archived experiment.
 
 Saved partitions and added examples are included, but do not replace the original course files.
 
@@ -114,7 +114,7 @@ Expected: the JSON summary prints with checks marked true and no exception.
 python src/predict.py
 ```
 
-This refits the frozen SVM on all **2,613 usable labelled cases** and rewrites **results.txt** with **409 labels**, no header, in original input order. It updates final-prediction evidence too.
+This refits the frozen SVM on all **2,613 usable labelled cases** and rewrites **results.txt** with **398 labels** (one per row of the cleaned test set), no header, in original input order. It updates final-prediction evidence too.
 
 The matching implementation took about ten seconds in an earlier M4 run. The file uses CRLF and no trailing newline.
 
@@ -188,7 +188,7 @@ MiniLM is frozen at revision 1110a243fdf4706b3f48f1d95db1a4f5529b4d41. ClinicalB
 
 - **The SVM runs on CPU.** Apple GPU hardware is not required for the main demo or predictions.
 - **Neural acceleration:** current code uses Apple MPS when available, otherwise CPU; it does not currently select NVIDIA CUDA.
-- **Missing StudentsPack:** place the original supplied folder beside the checkout.
+- **Missing StudentsPack-v2:** place the supplied folder beside the checkout. The first pack (409-row test set) is no longer used; its train.csv, description and template are byte-identical to v2.
 - **No module named ...:** install requirements into the same environment used to run the command.
 - **Windows:** use .venv/Scripts/python.exe and run_all.py.
 - **Historical logs mentioning llm-codex-merged:** these are transcripts from the base merge; current code resolves its checkout location.
@@ -206,6 +206,6 @@ Example for group 3 after its real PDF is ready:
 python src/package_submission.py --group-number 3 --paper-pdf /path/to/3.pdf
 ```
 
-The package builder currently uses llm-codex-merged as the directory name inside the ZIP. It does not upload anything.
+The package builder uses llm-final (code) and StudentsPack-v2 (course data, for re-running) as directory names inside the ZIP, and includes report-draft/. It does not upload anything.
 
 See [PROFESSOR_REQUIREMENTS.md](PROFESSOR_REQUIREMENTS.md) and [paper/FORMAT_NOTES.md](paper/FORMAT_NOTES.md).

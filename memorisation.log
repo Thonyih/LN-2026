@@ -1,0 +1,6 @@
+baseline_clinical_none                   mem=0.516  acc repeated=0.332  acc unseen=0.384  (repeated 190/523, gold new 189/190)
+clinicalbert_headtail_none               mem=0.579  acc repeated=0.353  acc unseen=0.646  (repeated 190/523, gold new 189/190)
+lsa_stripped_1.0_True_none               mem=0.489  acc repeated=0.426  acc unseen=0.571  (repeated 190/523, gold new 189/190)
+minilm_lr_stripped_1.0_True_none         mem=0.663  acc repeated=0.279  acc unseen=0.628  (repeated 190/523, gold new 189/190)
+word_lr_stripped_1.0_True_none           mem=0.721  acc repeated=0.247  acc unseen=0.592  (repeated 190/523, gold new 189/190)
+wordchar_svm_stripped_0.3_True_none      mem=1.000  acc repeated=0.000  acc unseen=0.646  (repeated 190/523, gold new 189/190)

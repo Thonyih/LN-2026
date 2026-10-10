@@ -20,7 +20,7 @@
     "predict.py"
   ],
   "results_format_crlf_no_trailing_newline_no_bom": true,
-  "official_predictions": 409,
+  "official_predictions": 398,
   "final_output_hash_matches": true,
   "unit_tests": "6 passed; see tests.log",
   "paper_status": "English Markdown; final template PDF pagination and group details remain user tasks"
