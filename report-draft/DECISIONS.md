@@ -18,6 +18,29 @@ That changed the question we wanted to answer. Getting a high score clearly did 
 notes, so the interesting question became: *how much of the score comes from the clinical text, and how much from
 the keywords and the repeated notes?*
 
+**The research question.** In the paper it reads:
+
+> *How do lexical and pretrained representations compare when specialty metadata is available versus absent, and
+> when notes are repeated versus unseen?*
+
+In plain words: do models that just count words do worse than pretrained language models like ClinicalBERT, and
+does the answer change depending on whether the shortcuts in this data are there? A shorter way to say it in the
+oral: *"Do pretrained language models classify clinical notes better than word-based models, once the shortcuts in
+the data (specialty keywords and repeated notes) are separated out?"*
+
+It has one main comparison and two conditions:
+
+| Part | What it asks | How we tested it |
+|---|---|---|
+| Main comparison: lexical vs pretrained | Do word-count models (Naive Bayes, LR, SVM, LSA) do worse than pretrained ones (MiniLM, ClinicalBERT)? | Six models forming a ladder from word counts to a fine-tuned clinical model |
+| Condition 1: metadata available vs absent | How much do the keywords, which almost name the answer, change the picture? | Each model with and without the keyword, and with the keyword rule (Table A3) |
+| Condition 2: repeated vs unseen notes | What happens when a test note is a copy of a training note filed under another specialty? | Random vs grouped partitions, and the memorisation rate (Table 1) |
+
+What we found: with the keywords available, the rules decide most notes and are almost always right; without
+them, all models from word counts to ClinicalBERT reach a similar level on new notes (macro-F1 0.57–0.62), so
+pretraining and fine-tuning bring no clear gain; and repeated notes are the hardest case, because their copies
+carry different labels, so a model that "remembers" the note gives the wrong answer.
+
 **Our first attempt (`llm-claude`)** tested every model in two ways: on a random split, where copies of a note
 can be on both sides, and on a grouped split, where every test note is new. That led to the most surprising
 finding of the project: a copy of a note the model has already seen is the *hardest* case, not the easiest,

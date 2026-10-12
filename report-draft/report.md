@@ -19,7 +19,10 @@ keywords [course2026]. Inspecting the training data showed that a high score doe
 the clinical text: the first keyword usually names the specialty, and many notes are verbatim copies of other
 notes filed under a different specialty. Our research question is therefore: **How do lexical and pretrained
 representations compare when specialty metadata is available versus absent, and when notes are repeated versus
-unseen?** We keep model predictions separate from two explicit rules and measure what each contributes.
+unseen?** We keep model predictions separate from two explicit rules (a keyword rule and a duplicate rule), so
+that we can see what each part contributes. In short, the keywords and the duplicates explain most of the high
+scores; on new notes, all models apart from the description-only baseline, from word counts to ClinicalBERT, reach
+a similar macro-F1 (0.57–0.62), and the largest share of the remaining errors comes from specialties that overlap.
 
 ## 2 Data
 
@@ -51,14 +54,21 @@ fold, so no held-out text enters training.
 
 ## 3 Models
 
-Six model families address the research question. The official **Naive Bayes baseline** uses TF-IDF of the
-lowercased, Porter-stemmed description with Multinomial NB (α = 1). **Word TF-IDF + logistic regression (LR)**
-tests lexical evidence. The **field word/character support vector machine (SVM)** concatenates per-field word
-and character TF-IDF features, capturing phrases and word fragments such as *-ectomy*. **Latent semantic
-analysis (LSA) + LR** projects TF-IDF to 128 dimensions. **Frozen MiniLM + LR** [reimers2019, wang2020,
-minilmcard] averages embeddings of 220-token chunks over the whole note and concatenates one 384-dimensional
-vector per field. **ClinicalBERT** [alsentzer2019] is fully fine-tuned, either on the first 510 word pieces
-(head) or on the first 128 and last 382 (head+tail).
+Since the research question compares lexical and pretrained representations, we chose six models that form a
+ladder from pure word counts to a fine-tuned clinical language model; each step adds one ingredient.
+The **Naive Bayes baseline** (TF-IDF of the lowercased, Porter-stemmed description, Multinomial NB, α = 1) is the
+official reference point that every model must beat.
+**Word TF-IDF + logistic regression (LR)** is the standard sparse text classifier: it shows how far plain word
+evidence from all fields goes.
+The **word/character SVM** adds character 3–5-grams per field, because clinical vocabulary is built from parts
+(*-ectomy*, *-itis*, *-oscopy*) and spelling varies; linear SVMs also suit very large sparse inputs.
+**LSA + LR** compresses the TF-IDF vectors into 128 dense dimensions learned from our own notes, to test whether
+grouping related words generalises better than exact words.
+**Frozen MiniLM + LR** [reimers2019, wang2020, minilmcard] adds knowledge from large general-domain pretraining
+without any fine-tuning; it reads whole notes by averaging 220-token chunks, one 384-dimensional vector per field.
+**ClinicalBERT** [alsentzer2019], pretrained on clinical notes and fully fine-tuned, is the largest model we
+fine-tune (108 M parameters) and the one closest to the domain; because 70.8% of the notes exceed its 512-token limit, it reads either the first 510 word pieces
+(head) or the first 128 and last 382, where conclusions such as IMPRESSION and PLAN usually appear (head+tail).
 
 Model inputs omit the keywords, remove only the first keyword, or keep them all. Two rules can sit on top of any
 model: a **keyword rule** (a first keyword mapped to a specialty, from a fixed list or learned with ≥ 2
@@ -68,17 +78,17 @@ encodes a regularity of this corpus, not a clinical fact.
 
 ## 4 Experimental Setup
 
-**How the design came about.** The design follows from the data. Because the first keyword names the specialty
-in 2,171 of 2,172 rows, we removed it from the model input and turned it into a separate rule; otherwise we would
-measure the keyword rather than how well a model reads clinical text. Because the same note is often filed under
-several specialties, every model is tested twice: on a *random* partition, where copies of a note can fall on
-both sides, and on a *grouped* partition, where every test note is new. Because the research question compares
-representations, the models range from word counts to a fine-tuned clinical Transformer, and since 70.8% of the
-notes exceed ClinicalBERT's 512-token limit, it also reads the end of each note. Section recombination takes
-donors only from the training fold and is compared with plain resampling, to separate the effect of new text from
-that of more examples. Every choice is made on a validation part and frozen before testing, so the test score is
-not optimistic. We submit the validation winner, the SVM, rather than ClinicalBERT, which scored lower (full-system
-macro-F1 0.952 vs. 0.969) and needed about 16 minutes of GPU training per run instead of seconds.
+**How the design came about.** Two things we noticed in the data shaped the design. First, the first keyword names
+the specialty in 2,171 of 2,172 rows. Left in the input, it would let a model score well without reading the note,
+so we removed it and turned it into a separate rule whose effect we measure. Second, the same note is often filed
+under several specialties, and a model that has seen one copy tends to repeat that copy's label. We therefore test
+every model twice: on a *random* partition, where copies of a note can fall on both sides, and on a *grouped*
+partition, where every test note is new. The remaining choices follow from the research question (the choice of models is explained in
+Section 3). Section recombination is compared with plain resampling, to
+tell new text apart from simply having more examples. Every choice is made on a validation part and frozen before
+testing, so that the test score is not biased by our choices. Finally, we submit the model that won on
+validation, the SVM: ClinicalBERT scored lower (full-system macro-F1 0.952 vs. 0.969) and needed about 16 minutes of
+GPU training per run instead of seconds.
 
 **Partitions.** Both regimes are stratified by label; empty notes are grouped by their other clinical fields. The
 first outer and first inner fold of seeded five-fold divisions give train/validation/test sizes of 1,672/418/523
@@ -155,50 +165,59 @@ Radiology, Surg = Surgery.*
 
 ## 6 Discussion
 
-**Representations.** LSA + LR and frozen MiniLM + LR reach the highest bare random scores (within 0.001).
-Fine-tuning does not consistently lead: ClinicalBERT reaches macro-F1 0.537 (random) and 0.604 (grouped), against
-0.419 and 0.615 for the SVM.
+**Answer to the research question.** The high scores come mostly from two shortcuts in the data, not from
+reading the notes. When the specialty keyword is present, the keyword rule is almost always right. On new notes,
+all representations reach a similar level and fine-tuning ClinicalBERT gives no clear gain. Repeated notes are the
+hardest case of all.
 
-**Repeated versus unseen notes.** A repeated note is the *hardest* case, not the easiest. 190 of the 523
-random-test notes repeat a training note, and for 189 of them the gold specialty is one the note does not yet
-carry. Bare models reproduce the training copy's label for 49–100% of these notes (Table 1); the SVM does so for
-all of them (accuracy 0.0% on repeated vs. 64.6% on unseen notes). This explains why every model scores lower on
-the random than on the grouped partition. Memorisation and generalisation are separate abilities: the SVM
-memorises most and is still among the best on unseen notes.
+**Pretrained versus word-based models.** On their own (without the rules), LSA and MiniLM score highest on the
+random partition (macro-F1 0.542), and MiniLM and the SVM on the grouped one (0.620 and 0.615). ClinicalBERT is
+close behind in both (0.537 and 0.604). On this data, pretraining does not change the outcome much.
 
-**Metadata.** The keywords carry most of the signal (Table A3): on the random partition, SVM macro-F1 rises from
-0.399 without keywords to 0.885 with them; the keyword rule alone gives 0.896, the duplicate rule alone 0.702 and
-both rules 0.945. Removing only the first keyword (0.419) still leaves other keyword evidence. In the submitted system, 444 random-test notes are decided by the keyword
-rule (100.0% correct), 25 by the duplicate rule (76.0%) and 54 by the model (70.4%). Transfer to hospital data without these clues is
-unproven.
+**Why repeated notes are the hardest.** A note already seen in training should be easy, but it is the opposite:
+190 of the 523 random-test notes repeat a training note, and in 189 of them the correct specialty differs from the
+training copy's. A model that recognises the note repeats the old label and is wrong. Five of the six models do
+this for over half of these notes (Table 1); the SVM does it every time (0% correct, against 64.6% on new notes).
+This is why every model scores lower on the random partition, and it shows that remembering notes and
+generalising are separate abilities: the SVM remembers the most and is still among the best on new notes.
 
-**Augmentation.** Effects are small (Table A1): macro-F1 changes by +0.004 / +0.008 (random / grouped) for
-resampling, +0.003 / +0.006 for section recombination and −0.011 / −0.016 for dropout. Since recombination is no
-better than plain resampling, its small benefit probably comes from more minority examples rather than new text; a variant of
-Ophthalmology note 1110 even pairs an eyelid-repair title with lens-removal text from donor 1143.
+**The role of the keywords.** The keywords carry most of the signal (Table A3). On the random partition, the
+SVM's macro-F1 rises from 0.399 without keywords to 0.885 with them, and to 0.945 when both rules are added. In the
+submitted system, the keyword rule decides 444 of the 523 test notes, all correctly; the duplicate rule decides 25
+(76.0% correct) and the model 54 (70.4%). Real hospital notes are not tagged this way, so such scores should not be
+expected in practice.
 
-**Errors.** The largest residual confusion is Gastroenterology → General Medicine (4 of 22 errors). Across models,
-the dominant bare error is a *Surgery* note predicted as an organ specialty (129 of 224 ClinicalBERT and 95 of 213
-SVM grouped-test errors; Fig. A1), where the duplication described in Section 2.1 makes both labels defensible:
-bare ClinicalBERT labels only 45 of 175 unseen *Surgery* notes as *Surgery*. Four
-actual mistakes of the submitted system:
+**Augmentation.** No strategy helps much (Table A1): adding copies of minority notes raises macro-F1 by
+0.004–0.008, building notes from sections of others by 0.003–0.006, and removing fields lowers it (−0.011 to
+−0.016). As the new notes are no better than plain copies, the small gain probably comes from having more minority
+examples, not new text. They can also be inconsistent: one keeps an eyelid-repair title from note 1110 with
+lens-removal text from note 1143.
 
-- **Source 361:** "I was asked to see the patient for C. diff colitis." Predicted *General Medicine*, gold
-  *Gastroenterology*. Keywords are absent; the long admission history and general consultation language may
-  outweigh the gastrointestinal cue. This is the most frequent confusion pair (four cases).
-- **Source 2582:** "Primary right shoulder arthroscopic rotator cuff repair with subacromial decompression."
-  Predicted *Orthopedic*, gold *Surgery*. The procedure belongs to both specialties; anatomical detail cannot
-  identify which of the two labels this corpus assigned.
-- **Source 771:** "Left third digit numbness and wrist pain." Predicted *Radiology*, gold *Neurology*. A training
-  copy is labelled *Orthopedic*; the duplicate rule correctly excludes it but then picks *Radiology*, cued by the
-  sample name "MRI C3 - Cord Compression". Excluding a known label does not identify the correct one.
-- **Source 1480:** "69-year-old white woman with Huntington disease, who presents with the third suicide attempt
-  in the past two months." Predicted *Neurology*, gold *Psychiatry-Psychology*. The note is a psychiatric consult
-  ("suicide" 11 times, "depression" 10 times) about a neurological disease, and the corpus files it twice:
-  source 858 as *Neurology* and source 1480 as *Psychiatry-Psychology*. Any single prediction is wrong for one
-  copy.
+**Typical mistakes.** The submitted system makes 22 mistakes on the random test; the most common is a
+Gastroenterology note predicted as General Medicine (4 cases). Without the rules, the most frequent mistake of
+both ClinicalBERT and the SVM is a Surgery note predicted as an organ specialty such as Orthopedic or
+Gastroenterology (129 of ClinicalBERT's 224 errors and 95 of the SVM's 213 on new notes; Fig. A1): ClinicalBERT
+labels only 45 of 175 new Surgery notes as Surgery. Because the corpus files many operations under both Surgery and
+the organ specialty, both answers are defensible. Four actual mistakes of the submitted system:
 
-These readings do not prove that the supplied labels are wrong, and exact grouping misses near-duplicates.
+- **Note 361:** "I was asked to see the patient for C. diff colitis." Predicted *General Medicine*, correct
+  *Gastroenterology*. There are no keywords, and the long admission history reads like a general consultation,
+  which may hide the gastrointestinal cue.
+- **Note 2582:** "Primary right shoulder arthroscopic rotator cuff repair with subacromial decompression."
+  Predicted *Orthopedic*, correct *Surgery*. Shoulder surgery belongs to both specialties, and nothing in the text
+  says which one this corpus chose.
+- **Note 771:** "Left third digit numbness and wrist pain." Predicted *Radiology*, correct *Neurology*. A copy in
+  the training data is labelled *Orthopedic*, so the duplicate rule rightly rules that out, but it then picks
+  *Radiology* because the sample name is "MRI C3 - Cord Compression". Knowing which label is wrong does not tell
+  us which one is right.
+- **Note 1480:** "69-year-old white woman with Huntington disease, who presents with the third suicide attempt in
+  the past two months." Predicted *Neurology*, correct *Psychiatry-Psychology*. The disease is neurological, but
+  the note is a psychiatric consultation ("suicide" 11 times, "depression" 10 times). The corpus contains this
+  same note twice, as *Neurology* (note 858) and as *Psychiatry-Psychology* (note 1480), so any single answer is
+  wrong for one of the copies.
+
+These examples suggest that many remaining errors come from overlapping labels rather than from the models,
+although they do not prove the given labels wrong; our duplicate check also misses near-copies.
 
 ## 7 Future Work
 
