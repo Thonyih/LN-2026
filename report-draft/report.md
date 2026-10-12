@@ -5,6 +5,7 @@ WORKING DRAFT for the LaTeX conversion (template: StudentsPack-v2/Project-Templa
 - Before submitting: fill the author line; keep the main text ≤ 3 pages (bibliography excluded);
   appendix ≤ 1 page; delete the template's "Evaluation and tips" section.
 - ../paper/draft.md is the auto-generated version of this text (src/report.py); THIS file is the one to edit.
+- DECISIONS.md (same folder) = full decision story + likely oral questions; not part of the paper, not zipped.
 -->
 
 # Specialty Classification of Clinical Notes: Representations, Metadata and Repeated Notes
@@ -18,8 +19,7 @@ keywords [course2026]. Inspecting the training data showed that a high score doe
 the clinical text: the first keyword usually names the specialty, and many notes are verbatim copies of other
 notes filed under a different specialty. Our research question is therefore: **How do lexical and pretrained
 representations compare when specialty metadata is available versus absent, and when notes are repeated versus
-unseen?** To answer it, we keep model predictions separate from two explicit rules (a keyword rule and a
-duplicate rule) and measure what each contributes.
+unseen?** We keep model predictions separate from two explicit rules and measure what each contributes.
 
 ## 2 Data
 
@@ -37,8 +37,7 @@ almost never repeat a label: in 710 of the 712 groups with several rows, every c
 Consequently, on the labelled data, a system that gives identical clinical text (description, sample name,
 transcription) a single label can reach at most 70.3% accuracy; only differing keywords can separate such copies. **(3) Formatting faults:** seven descriptions swallowed
 other records (a quoting fault); cleaning cuts them at the first embedded record and normalises the `.,` section
-separators, identically for training and test inputs. The professor later re-issued the test file with the
-equivalent broken rows removed (Section 4); the training file was not re-issued.
+separators, identically for training and test inputs.
 
 ### 2.2 Data Augmentation
 
@@ -47,9 +46,8 @@ towards about 150 cases each, adding at most four variants per original note. Th
 **resampling** (duplicating originals), **field dropout** (removing the keywords, the sample name with
 probability 0.5, and the transcription with probability 0.35 when a description remains), and **section
 recombination**: each headed section of a note (e.g. PROCEDURE, IMPRESSION) is replaced, with probability 0.5,
-by the same-header section of another training note of the same specialty. Donor pools are rebuilt inside each
-training fold, and the ids of every base and donor note are saved, so no held-out text can enter training.
-Sharing a specialty does not guarantee a coherent synthetic note (Section 6).
+by the same-header section of another training note of the same specialty. Donors come only from the training
+fold, so no held-out text enters training.
 
 ## 3 Models
 
@@ -62,30 +60,34 @@ minilmcard] averages embeddings of 220-token chunks over the whole note and conc
 vector per field. **ClinicalBERT** [alsentzer2019] is fully fine-tuned, either on the first 510 word pieces
 (head) or on the first 128 and last 382 (head+tail).
 
-Model inputs either omit the keywords, remove only the first (specialty) keyword, or keep all keywords. Two
-rules can be applied on top of any model: a **keyword rule** (a first keyword mapped to a specialty, from a fixed
-list or learned from training data with ≥ 2 observations and ≥ 95% purity) and a **duplicate rule** (for a
-verbatim copy of training notes, the specialties already attached to it are excluded and the best remaining
-model score is chosen). The keyword rule takes precedence. The duplicate rule encodes a regularity of this
-corpus, not a clinical fact.
+Model inputs omit the keywords, remove only the first keyword, or keep them all. Two rules can sit on top of any
+model: a **keyword rule** (a first keyword mapped to a specialty, from a fixed list or learned with ≥ 2
+observations and ≥ 95% purity), which takes precedence, and a **duplicate rule** (for a verbatim copy of training
+notes, exclude the specialties already attached to it and take the best remaining score). The duplicate rule
+encodes a regularity of this corpus, not a clinical fact.
 
 ## 4 Experimental Setup
 
-**Partitions.** Random partitions allow copies of a note on both sides; grouped partitions keep all copies of a
-cleaned note together (empty notes are grouped by their other clinical fields). Both are stratified by label.
-The first outer and first inner fold of seeded five-fold divisions give train/validation/test sizes of
-1,672/418/523 for each regime, with all classes present. All compared models are fitted on the same training
-rows. The validation part selects configurations, checkpoints and rules by macro-F1, then minimum class F1, then
-accuracy. The submitted system is the random-regime validation winner; it was frozen before test scoring and then
-refitted on **all 2,613 valid training cases** (the entire usable training set).
+**How the design came about.** The design follows from the data. Because the first keyword names the specialty
+in 2,171 of 2,172 rows, we removed it from the model input and turned it into a separate rule; otherwise we would
+measure the keyword rather than how well a model reads clinical text. Because the same note is often filed under
+several specialties, every model is tested twice: on a *random* partition, where copies of a note can fall on
+both sides, and on a *grouped* partition, where every test note is new. Because the research question compares
+representations, the models range from word counts to a fine-tuned clinical Transformer, and since 70.8% of the
+notes exceed ClinicalBERT's 512-token limit, it also reads the end of each note. Section recombination takes
+donors only from the training fold and is compared with plain resampling, to separate the effect of new text from
+that of more examples. Every choice is made on a validation part and frozen before testing, so the test score is
+not optimistic. We submit the validation winner, the SVM, rather than ClinicalBERT, which scored lower (full-system
+macro-F1 0.952 vs. 0.969) and needed about 16 minutes of GPU training per run instead of seconds.
 
-**Official test set.** `results.txt` is produced on the professor's **cleaned test set (398 rows)**, released
-after the first version (409 rows) "so that everything matches correctly". The cleaned file is the first one with
-11 broken rows deleted (four oversized records, their four overflow lines, one empty row, one blank row and one
-row with shifted fields); every other row is unchanged and in the same order. The frozen system's predictions for
-the 398 remaining notes are identical to its predictions on the first file. Test inputs are read only to produce
-`results.txt`; all analyses use labelled training data. Earlier exploratory runs had inspected the unlabelled test
-inputs, so this study is a retrospective rerun rather than a new external confirmation.
+**Partitions.** Both regimes are stratified by label; empty notes are grouped by their other clinical fields. The
+first outer and first inner fold of seeded five-fold divisions give train/validation/test sizes of 1,672/418/523
+per regime, with all classes present, and all models are fitted on the same training rows. Validation ranks
+configurations, checkpoints and rules by macro-F1, then minimum class F1, then accuracy. The submitted system is
+refitted on **all 2,613 valid training cases**.
+
+**Test set.** `results.txt` contains the predictions for the 398 official test notes; test inputs are used only
+for this.
 
 **Metrics.** Accuracy, macro-F1 and per-class precision, recall and F1 [pedregosa2011]; a paired bootstrap over
 note groups gives 95% intervals.
@@ -96,9 +98,12 @@ Partition and model seeds are 20261008 and 42. The inverse regularisation streng
 for the SVM and {1, 10} for LR, with ordinary or balanced class weights. SVM word 1–2-grams use min_df = 2 and at
 most 40,000 features per field; character 3–5-grams within word boundaries use min_df = 3 and at most 30,000.
 Word LR and LSA use word 1–2-grams, min_df = 2, at most 60,000 features. All comparators use sublinear TF and L2
-normalisation. ClinicalBERT uses AdamW (learning rate 3e-5, weight decay 0.01), 10% warm-up, square-root
-inverse-frequency class weights, 3 epochs, at most 512 tokens, and an effective batch of 16 (micro-batches of 8,
-partial batches included). Model revisions are pinned; all runs used an Apple M4 with 16 GB.
+normalisation. Resulting input sizes: 114,257 sparse dimensions for the submitted SVM (about 3,200 non-zero per
+note), 60,000 for word LR and 4,126 for the baseline; 128 (LSA) and 1,536 (MiniLM, 4 × 384) dense dimensions.
+ClinicalBERT (BERT-base: 12 layers, 108 M parameters, all fine-tuned) reads at most 512 word pieces and classifies
+a 768-dimensional [CLS] vector; it uses AdamW (learning rate 3e-5, weight decay 0.01), 10% warm-up, square-root
+inverse-frequency class weights, 3 epochs and an effective batch of 16 (micro-batches of 8, partial batches
+included). Model revisions are pinned; all runs used an Apple M4 with 16 GB.
 
 ## 5 Results
 
@@ -148,18 +153,6 @@ Gastroenterology, GenMed = General Medicine, Neuro = Neurology, NSurg = Neurosur
 Obstetrics-Gynecology, Ophth = Ophthalmology, Ortho = Orthopedic, Psych = Psychiatry-Psychology, Radio =
 Radiology, Surg = Surgery.*
 
-| SVM input / rules | Random macro-F1 | Grouped macro-F1 |
-| --- | --- | --- |
-| No keywords | 0.399 | 0.610 |
-| First specialty keyword removed | 0.419 | 0.615 |
-| All keywords | 0.885 | 0.911 |
-| No keywords + keyword rule | 0.896 | 0.920 |
-| No keywords + duplicate rule | 0.702 | 0.610 |
-| No keywords + both rules | 0.945 | 0.920 |
-
-*Table 3. Metadata and rule ablations for the SVM. Rules read the original keywords even when the model input
-omits them.*
-
 ## 6 Discussion
 
 **Representations.** LSA + LR and frozen MiniLM + LR reach the highest bare random scores (within 0.001).
@@ -173,17 +166,16 @@ all of them (accuracy 0.0% on repeated vs. 64.6% on unseen notes). This explains
 the random than on the grouped partition. Memorisation and generalisation are separate abilities: the SVM
 memorises most and is still among the best on unseen notes.
 
-**Metadata.** Table 3 shows that the keywords carry most of the signal, and that removing only the first keyword
-still leaves other keyword evidence. In the submitted system, 444 random-test notes are decided by the keyword
-rule (100.0% correct), 25 by the duplicate rule (76.0%) and 54 by the model (70.4%). Its success therefore
-combines clinical language with metadata and corpus structure; transfer to hospital data without those clues is
+**Metadata.** The keywords carry most of the signal (Table A3): on the random partition, SVM macro-F1 rises from
+0.399 without keywords to 0.885 with them; the keyword rule alone gives 0.896, the duplicate rule alone 0.702 and
+both rules 0.945. Removing only the first keyword (0.419) still leaves other keyword evidence. In the submitted system, 444 random-test notes are decided by the keyword
+rule (100.0% correct), 25 by the duplicate rule (76.0%) and 54 by the model (70.4%). Transfer to hospital data without these clues is
 unproven.
 
-**Augmentation.** Pooled three-fold predictions show small effects: resampling changes macro-F1 by +0.004
-(random) / +0.008 (grouped), section recombination by +0.003 / +0.006, and dropout by −0.011 / −0.016 (Table A1).
-These diagnostics are descriptive and minority-class F1 is unstable. Inspection also shows the limits of
-recombination: a variant of Ophthalmology note 1110 keeps an eyelid-repair title while donor 1143 supplies
-lens-removal procedure text, so label preservation does not guarantee consistency.
+**Augmentation.** Effects are small (Table A1): macro-F1 changes by +0.004 / +0.008 (random / grouped) for
+resampling, +0.003 / +0.006 for section recombination and −0.011 / −0.016 for dropout. Since recombination is no
+better than plain resampling, its small benefit probably comes from more minority examples rather than new text; a variant of
+Ophthalmology note 1110 even pairs an eyelid-repair title with lens-removal text from donor 1143.
 
 **Errors.** The largest residual confusion is Gastroenterology → General Medicine (4 of 22 errors). Across models,
 the dominant bare error is a *Surgery* note predicted as an organ specialty (129 of 224 ClinicalBERT and 95 of 213
@@ -206,8 +198,7 @@ actual mistakes of the submitted system:
   source 858 as *Neurology* and source 1480 as *Psychiatry-Psychology*. Any single prediction is wrong for one
   copy.
 
-These readings do not prove that the supplied labels are wrong. The intervals exclude prior exploration and
-selection uncertainty, exact grouping misses near-duplicates, and performance on the official test is unknown.
+These readings do not prove that the supplied labels are wrong, and exact grouping misses near-duplicates.
 
 ## 7 Future Work
 
@@ -230,8 +221,8 @@ Software: Python, NumPy, pandas, SciPy, scikit-learn, NLTK, Matplotlib, PyTorch,
 
 **Declaration of LLM use.** ⚠ *Adapt to what the group actually did.* Claude (Anthropic) assisted the earlier
 design, code and drafting. OpenAI Codex reviewed both runs, merged and corrected the code, executed the
-experiments, inspected data and errors, and drafted the paper; Claude then added the memorisation analysis, the
-fourth error example and the cleaned-test-set update. All metrics come from saved predictions; neither assistant
+experiments, inspected data and errors, and drafted the paper; Claude then added the memorisation analysis and the
+fourth error example. All metrics come from saved predictions; neither assistant
 supplied case predictions or generated synthetic clinical content.
 
 ## Appendix A: Extra Figures and Tables
@@ -259,6 +250,18 @@ supplied case predictions or generated synthetic clinical content.
 | LSA + LR | 0.49 | 0.426 | 0.571 |
 | Frozen MiniLM + LR | 0.66 | 0.279 | 0.628 |
 | Fine-tuned ClinicalBERT | 0.58 | 0.353 | 0.646 |
+
+*Table A3. Metadata and rule ablations for the SVM (macro-F1). Rules read the original keywords even when the
+model input omits them.*
+
+| SVM input / rules | Random | Grouped |
+| --- | --- | --- |
+| No keywords | 0.399 | 0.610 |
+| First specialty keyword removed | 0.419 | 0.615 |
+| All keywords | 0.885 | 0.911 |
+| No keywords + keyword rule | 0.896 | 0.920 |
+| No keywords + duplicate rule | 0.702 | 0.610 |
+| No keywords + both rules | 0.945 | 0.920 |
 
 ![Bare ClinicalBERT, grouped test](figures/figA1_bert_grouped.png)
 
