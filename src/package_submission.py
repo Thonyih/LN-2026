@@ -63,7 +63,7 @@ def main():
             "StudentsPack-v2/Project-Template/template.tex",
         )
         for p in sorted((ROOT / "report-draft").rglob("*")):
-            if p.is_file() and p.name != "DECISIONS.md":   # oral-preparation notes stay out of the zip
+            if p.is_file() and p.name != "DECISIONS.md" and "deliverable" not in p.parts:  # oral notes / ready-made deliverable stay out
                 z.write(p, "llm-final/" + str(p.relative_to(ROOT)))
         for n in [
             "README.md",

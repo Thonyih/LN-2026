@@ -1,0 +1,183 @@
+{
+  "raw_records": 2616,
+  "valid_records": 2613,
+  "excluded_source_records": [
+    932,
+    2052,
+    2281
+  ],
+  "class_counts": {
+    "Surgery": 876,
+    "Cardiovascular-Pulmonary": 299,
+    "Orthopedic": 292,
+    "Radiology": 217,
+    "General Medicine": 207,
+    "Gastroenterology": 192,
+    "Neurology": 181,
+    "Obstetrics-Gynecology": 135,
+    "Neurosurgery": 78,
+    "Ophthalmology": 71,
+    "Psychiatry-Psychology": 40,
+    "Dermatology": 25
+  },
+  "missing_fields": {
+    "description": 1,
+    "sample_name": 4,
+    "transcription": 30,
+    "keywords": 441
+  },
+  "duplicate_note_extra_records": 779,
+  "mixed_label_note_groups": 711,
+  "recognized_first_keywords": 2172,
+  "keyword_agreement": 2171,
+  "clinical_tuple_deterministic_empirical_accuracy_bound": 0.7034060466896288,
+  "cleaning_altered_records": {
+    "description": 7,
+    "sample_name": 0,
+    "transcription": 2529,
+    "keywords": 0
+  },
+  "split_statistics": [
+    {
+      "regime": "random",
+      "counts": {
+        "train": 1672,
+        "test": 523,
+        "validation": 418
+      },
+      "class_counts": {
+        "Cardiovascular-Pulmonary": {
+          "test": 60,
+          "train": 191,
+          "validation": 48
+        },
+        "Dermatology": {
+          "test": 5,
+          "train": 16,
+          "validation": 4
+        },
+        "Gastroenterology": {
+          "test": 39,
+          "train": 122,
+          "validation": 31
+        },
+        "General Medicine": {
+          "test": 41,
+          "train": 133,
+          "validation": 33
+        },
+        "Neurology": {
+          "test": 36,
+          "train": 116,
+          "validation": 29
+        },
+        "Neurosurgery": {
+          "test": 16,
+          "train": 50,
+          "validation": 12
+        },
+        "Obstetrics-Gynecology": {
+          "test": 27,
+          "train": 86,
+          "validation": 22
+        },
+        "Ophthalmology": {
+          "test": 14,
+          "train": 46,
+          "validation": 11
+        },
+        "Orthopedic": {
+          "test": 58,
+          "train": 187,
+          "validation": 47
+        },
+        "Psychiatry-Psychology": {
+          "test": 8,
+          "train": 25,
+          "validation": 7
+        },
+        "Radiology": {
+          "test": 44,
+          "train": 139,
+          "validation": 34
+        },
+        "Surgery": {
+          "test": 175,
+          "train": 561,
+          "validation": 140
+        }
+      }
+    },
+    {
+      "regime": "grouped",
+      "counts": {
+        "train": 1672,
+        "test": 523,
+        "validation": 418
+      },
+      "class_counts": {
+        "Cardiovascular-Pulmonary": {
+          "test": 60,
+          "train": 191,
+          "validation": 48
+        },
+        "Dermatology": {
+          "test": 5,
+          "train": 16,
+          "validation": 4
+        },
+        "Gastroenterology": {
+          "test": 39,
+          "train": 122,
+          "validation": 31
+        },
+        "General Medicine": {
+          "test": 41,
+          "train": 133,
+          "validation": 33
+        },
+        "Neurology": {
+          "test": 36,
+          "train": 116,
+          "validation": 29
+        },
+        "Neurosurgery": {
+          "test": 16,
+          "train": 50,
+          "validation": 12
+        },
+        "Obstetrics-Gynecology": {
+          "test": 27,
+          "train": 86,
+          "validation": 22
+        },
+        "Ophthalmology": {
+          "test": 14,
+          "train": 45,
+          "validation": 12
+        },
+        "Orthopedic": {
+          "test": 59,
+          "train": 187,
+          "validation": 46
+        },
+        "Psychiatry-Psychology": {
+          "test": 8,
+          "train": 26,
+          "validation": 6
+        },
+        "Radiology": {
+          "test": 43,
+          "train": 139,
+          "validation": 35
+        },
+        "Surgery": {
+          "test": 175,
+          "train": 561,
+          "validation": 140
+        }
+      }
+    }
+  ],
+  "train_sha256": "028a886eca5f26ff61d9cf59ed087efd91d2689e879eac844be44b222f582dc1"
+}

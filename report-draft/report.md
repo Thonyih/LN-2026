@@ -15,7 +15,7 @@ WORKING DRAFT for the LaTeX conversion (template: StudentsPack-v2/Project-Templa
 ## 1 Introduction
 
 We classify clinical notes into 12 medical specialties from their description, sample name, transcription and
-keywords [course2026]. Inspecting the training data showed that a high score does not have to come from reading
+keywords. Inspecting the training data showed that a high score does not have to come from reading
 the clinical text: the first keyword usually names the specialty, and many notes are verbatim copies of other
 notes filed under a different specialty. Our research question is therefore: **How do lexical and pretrained
 representations compare when specialty metadata is available versus absent, and when notes are repeated versus
@@ -54,8 +54,8 @@ fold, so no held-out text enters training.
 
 ## 3 Models
 
-Since the research question compares lexical and pretrained representations, we chose six models that form a
-ladder from pure word counts to a fine-tuned clinical language model; each step adds one ingredient.
+Since the research question compares lexical and pretrained representations, we chose six models, following the
+course lectures [coheur2026], that form a ladder from pure word counts to a fine-tuned clinical language model; each step adds one ingredient.
 The **Naive Bayes baseline** (TF-IDF of the lowercased, Porter-stemmed description, Multinomial NB, α = 1) is the
 official reference point that every model must beat.
 **Word TF-IDF + logistic regression (LR)** is the standard sparse text classifier: it shows how far plain word
@@ -83,21 +83,22 @@ the specialty in 2,171 of 2,172 rows. Left in the input, it would let a model sc
 so we removed it and turned it into a separate rule whose effect we measure. Second, the same note is often filed
 under several specialties, and a model that has seen one copy tends to repeat that copy's label. We therefore test
 every model twice: on a *random* partition, where copies of a note can fall on both sides, and on a *grouped*
-partition, where every test note is new. The remaining choices follow from the research question (the choice of models is explained in
+partition, where every held-out note is new. The remaining choices follow from the research question (the choice of models is explained in
 Section 3). Section recombination is compared with plain resampling, to
 tell new text apart from simply having more examples. Every choice is made on a validation part and frozen before
-testing, so that the test score is not biased by our choices. Finally, we submit the model that won on
+scoring the held-out set, so that its score is not biased by our choices. Finally, we submit the model that won on
 validation, the SVM: ClinicalBERT scored lower (full-system macro-F1 0.952 vs. 0.969) and needed about 16 minutes of
 GPU training per run instead of seconds.
 
 **Partitions.** Both regimes are stratified by label; empty notes are grouped by their other clinical fields. The
-first outer and first inner fold of seeded five-fold divisions give train/validation/test sizes of 1,672/418/523
+first outer and first inner fold of seeded five-fold divisions give train/validation/held-out sizes of 1,672/418/523
 per regime, with all classes present, and all models are fitted on the same training rows. Validation ranks
 configurations, checkpoints and rules by macro-F1, then minimum class F1, then accuracy. The submitted system is
 refitted on **all 2,613 valid training cases**.
 
-**Test set.** `results.txt` contains the predictions for the 398 official test notes; test inputs are used only
-for this.
+**Held-out sets and official test set.** All scores in this paper come from our held-out sets, which are taken
+from the labelled training file. The official test file (398 notes) has no labels; it is used only to produce
+`results.txt`.
 
 **Metrics.** Accuracy, macro-F1 and per-class precision, recall and F1 [pedregosa2011]; a paired bootstrap over
 note groups gives 95% intervals.
@@ -129,16 +130,16 @@ the description).
 | Frozen MiniLM + LR | 50.1% | 0.542 | 58.5% | 0.620 | 0.66 |
 | Fine-tuned ClinicalBERT | 53.9% | 0.537 | 57.2% | 0.604 | 0.58 |
 
-*Table 1. Bare models on common partitions; F1 is macro-averaged. Mem. rate: among the 190 random-test notes
+*Table 1. Bare models on common partitions; F1 is macro-averaged. Mem. rate: among the 190 random held-out notes
 that repeat a training note, the share for which the model outputs a specialty that note already carries in the
 training data.*
 
 The submitted system is the **field word/character SVM** (C = 0.3, balanced weights, keywords omitted from the
-input) with **both rules**: random-test accuracy **95.8%**, macro-F1 **0.940**, minimum class F1 **0.800** (95%
+input) with **both rules**: random held-out accuracy **95.8%**, macro-F1 **0.940**, minimum class F1 **0.800** (95%
 macro-F1 interval [0.897, 0.969]). The separately selected grouped system reaches 93.5% accuracy and 0.914
-macro-F1. Table 2 and Figure 1 describe the submitted system on the random test.
+macro-F1. Table 2 and Figure 1 describe the submitted system on the random held-out set.
 
-| Specialty | Train n | Test n | P | R | F1 |
+| Specialty | Train n | Held-out n | P | R | F1 |
 | --- | --- | --- | --- | --- | --- |
 | Cardiovascular-Pulmonary | 299 | 60 | 0.95 | 0.98 | 0.97 |
 | Dermatology | 25 | 5 | 0.80 | 0.80 | 0.80 |
@@ -153,11 +154,11 @@ macro-F1. Table 2 and Figure 1 describe the submitted system on the random test.
 | Radiology | 217 | 44 | 0.96 | 1.00 | 0.98 |
 | Surgery | 876 | 175 | 0.99 | 0.97 | 0.98 |
 
-*Table 2. Submitted system on the random test: training size, test support, precision (P), recall (R), F1.*
+*Table 2. Submitted system on the random held-out set: training size, held-out support, precision (P), recall (R), F1.*
 
-![Submitted system, random test](figures/fig1_submitted_random.png)
+![Submitted system, random held-out set](figures/fig1_submitted_random.png)
 
-*Figure 1. Confusion matrix of the submitted system on the random test (rows: gold; columns: predicted; numbers:
+*Figure 1. Confusion matrix of the submitted system on the random held-out set (rows: gold; columns: predicted; numbers:
 counts; colour: share of the row). Cardio = Cardiovascular-Pulmonary, Derm = Dermatology, Gastro =
 Gastroenterology, GenMed = General Medicine, Neuro = Neurology, NSurg = Neurosurgery, ObGyn =
 Obstetrics-Gynecology, Ophth = Ophthalmology, Ortho = Orthopedic, Psych = Psychiatry-Psychology, Radio =
@@ -175,7 +176,7 @@ random partition (macro-F1 0.542), and MiniLM and the SVM on the grouped one (0.
 close behind in both (0.537 and 0.604). On this data, pretraining does not change the outcome much.
 
 **Why repeated notes are the hardest.** A note already seen in training should be easy, but it is the opposite:
-190 of the 523 random-test notes repeat a training note, and in 189 of them the correct specialty differs from the
+190 of the 523 random held-out notes repeat a training note, and in 189 of them the correct specialty differs from the
 training copy's. A model that recognises the note repeats the old label and is wrong. Five of the six models do
 this for over half of these notes (Table 1); the SVM does it every time (0% correct, against 64.6% on new notes).
 This is why every model scores lower on the random partition, and it shows that remembering notes and
@@ -183,7 +184,7 @@ generalising are separate abilities: the SVM remembers the most and is still amo
 
 **The role of the keywords.** The keywords carry most of the signal (Table A3). On the random partition, the
 SVM's macro-F1 rises from 0.399 without keywords to 0.885 with them, and to 0.945 when both rules are added. In the
-submitted system, the keyword rule decides 444 of the 523 test notes, all correctly; the duplicate rule decides 25
+submitted system, the keyword rule decides 444 of the 523 held-out notes, all correctly; the duplicate rule decides 25
 (76.0% correct) and the model 54 (70.4%). Real hospital notes are not tagged this way, so such scores should not be
 expected in practice.
 
@@ -193,7 +194,7 @@ expected in practice.
 examples, not new text. They can also be inconsistent: one keeps an eyelid-repair title from note 1110 with
 lens-removal text from note 1143.
 
-**Typical mistakes.** The submitted system makes 22 mistakes on the random test; the most common is a
+**Typical mistakes.** The submitted system makes 22 mistakes on the random held-out set; the most common is a
 Gastroenterology note predicted as General Medicine (4 cases). Without the rules, the most frequent mistake of
 both ClinicalBERT and the SVM is a Surgery note predicted as an organ specialty such as Orthopedic or
 Gastroenterology (129 of ClinicalBERT's 224 errors and 95 of the SVM's 213 on new notes; Fig. A1): ClinicalBERT
@@ -234,7 +235,7 @@ evidence supports it.
 - [minilmcard] Sentence Transformers. all-MiniLM-L6-v2 model card (revision 1110a24).
 - [alsentzer2019] Alsentzer, E. et al. (2019). Publicly Available Clinical BERT Embeddings. *Clinical NLP Workshop* — checkpoint `emilyalsentzer/Bio_ClinicalBERT` (revision d5892b3).
 - [pedregosa2011] Pedregosa, F. et al. (2011). Scikit-learn: Machine Learning in Python. *JMLR* 12.
-- [course2026] Course project description and template (2026); corpus adapted from Kaggle (MTSamples). No external labelled cases were added.
+- [coheur2026] Coheur, L. (2026). Natural Language: Lecture Slides (T1–T9). Instituto Superior Técnico, Universidade de Lisboa.
 
 Software: Python, NumPy, pandas, SciPy, scikit-learn, NLTK, Matplotlib, PyTorch, Transformers, Sentence Transformers.
 
@@ -259,7 +260,7 @@ supplied case predictions or generated synthetic clinical content.
 | grouped | dropout | 58.9% | 0.592 | 0.566 |
 | grouped | sections | 59.4% | 0.614 | 0.633 |
 
-*Table A2. Memorisation on the random test (bare models).*
+*Table A2. Memorisation on the random held-out set (bare models).*
 
 | Model | Mem. rate | Acc. repeated | Acc. unseen |
 | --- | --- | --- | --- |
@@ -282,7 +283,7 @@ model input omits them.*
 | No keywords + duplicate rule | 0.702 | 0.610 |
 | No keywords + both rules | 0.945 | 0.920 |
 
-![Bare ClinicalBERT, grouped test](figures/figA1_bert_grouped.png)
+![Bare ClinicalBERT, grouped held-out set](figures/figA1_bert_grouped.png)
 
-*Figure A1. Confusion matrix of bare ClinicalBERT (no rules) on the grouped test, i.e. unseen notes (same
+*Figure A1. Confusion matrix of bare ClinicalBERT (no rules) on the grouped held-out set, i.e. unseen notes (same
 conventions as Fig. 1). Outlined cells: Surgery notes predicted as an organ specialty (129 of 224 errors).*

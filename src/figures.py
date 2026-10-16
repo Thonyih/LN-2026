@@ -1,7 +1,7 @@
 """Paper figures (from saved predictions only; no retraining, no official-test data).
 
-Figure 1  : submitted system (SVM + keyword + duplicate rules) on the random test  -> required confusion matrix
-Figure A1 : bare ClinicalBERT (no rules) on the grouped test, i.e. unseen notes     -> shows the error pattern
+Figure 1  : submitted system (SVM + keyword + duplicate rules) on the random held-out set -> required confusion matrix
+Figure A1 : bare ClinicalBERT (no rules) on the grouped held-out set, i.e. unseen notes     -> shows the error pattern
             discussed in the paper: Surgery notes predicted as an organ specialty (cells outlined)
 
 Colour = share of the row (recall-normalised), so small classes are as visible as Surgery; numbers = counts.
@@ -70,13 +70,13 @@ def draw(cm, title, path, outline=()):
 
 def main():
     sel = pd.read_csv(ART / "random_selected_predictions.csv", keep_default_na=False)
-    draw(confusion(sel), "Submitted system, random test (n = 523)", "fig1_submitted_random")
+    draw(confusion(sel), "Submitted system, random held-out set (n = 523)", "fig1_submitted_random")
 
     bert = pd.read_csv(ART / "grouped_bare_clinicalbert_headtail_none_predictions.csv", keep_default_na=False)
     cm = confusion(bert)
     s = LABELS.index("Surgery")
     cells = [(s, LABELS.index(o)) for o in ORGANS]
-    errors = draw(cm, "Bare ClinicalBERT, grouped test (unseen notes)", "figA1_bert_grouped", outline=cells)
+    errors = draw(cm, "Bare ClinicalBERT, grouped held-out set (unseen notes)", "figA1_bert_grouped", outline=cells)
     surg_to_organ = sum(int(cm[i, j]) for i, j in cells)
     print(f"  Surgery -> organ specialty (outlined cells): {surg_to_organ} of {errors} errors")
 

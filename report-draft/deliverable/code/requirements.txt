@@ -1,0 +1,7 @@
+# Enough to reproduce results.txt with src/predict.py (versions used for the submitted run).
+# The full environment of the experiments (ClinicalBERT, MiniLM, figures) is in requirements-lock.txt.
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+nltk==3.10.3
